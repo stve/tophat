@@ -31,7 +31,8 @@ Gem::Specification.new do |s|
      "test/helper.rb",
      "test/test_tophat.rb",
      "test/test_tophat_meta.rb",
-     "test/test_tophat_title.rb"
+     "test/test_tophat_title.rb",
+     "tophat.gemspec"
   ]
   s.homepage = %q{http://github.com/spagalloco/tophat}
   s.rdoc_options = ["--charset=UTF-8"]
