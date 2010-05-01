@@ -9,8 +9,8 @@ begin
   
   Jeweler::Tasks.new do |gem|
     gem.name = "tophat"
-    gem.summary = %Q{TODO: simple view helpers for your layouts}
-    gem.description = %Q{TODO: simple view helpers for your layouts}
+    gem.summary = %Q{simple view helpers for your layouts}
+    gem.description = %Q{simple view helpers for your layouts}
     gem.email = "steve.agalloco@gmail.com"
     gem.homepage = "http://github.com/spagalloco/tophat"
     gem.authors = ["Steve Agalloco"]
