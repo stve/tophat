@@ -1,16 +1,22 @@
 require 'rubygems'
 require 'rake'
 
+$LOAD_PATH.unshift 'lib/'
+require 'tophat/version'
+
 begin
   require 'jeweler'
+  
   Jeweler::Tasks.new do |gem|
     gem.name = "tophat"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{TODO: simple view helpers for your layouts}
+    gem.description = %Q{TODO: simple view helpers for your layouts}
     gem.email = "steve.agalloco@gmail.com"
     gem.homepage = "http://github.com/spagalloco/tophat"
     gem.authors = ["Steve Agalloco"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    gem.add_dependency "actionpack", ">= 2.3.5"
+    gem.add_development_dependency "shoulda", ">= 0"
+    gem.version = TopHat::VERSION
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
@@ -44,7 +50,7 @@ task :default => :test
 
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+  version = TopHat::VERSION
 
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "tophat #{version}"
