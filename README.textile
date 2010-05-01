@@ -76,18 +76,24 @@ Keywords can also be passed as an array:
 
 Then in your layout, add the keyword and description helpers:
 
+<pre>
 <%= keywords %>
 <%= description %>
+</pre>
 
 which will output the meta-tag:
 
+<pre>
 <meta name="keywords" content="John, Paul, George, Ringo" />
 <meta name="description" content="You say goodbye, I say hello." />
+</pre>
 
 keywords and descriptions can also take a default in the layout:
 
+<pre>
 <%= keywords :default => 'default keywords if none are passed' %>
 <%= description :default => 'default description if none is passed' %>
+</pre>
 
 h2. Note on Patches/Pull Requests
  
