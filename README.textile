@@ -1,7 +1,5 @@
 h1. TopHat
 
-h2. Description
-
 TopHat is a set of view helpers to keep your layouts and views DRY.
 
 h2. Layout Usage
