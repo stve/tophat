@@ -2,7 +2,7 @@ require 'helper'
 
 class TopHatTitleTestCase < Test::Unit::TestCase
 
-  context "when using the title helpers" do
+  context "when using the title helper" do
     
     setup do
       @template = ActionView::Base.new
@@ -22,28 +22,33 @@ class TopHatTitleTestCase < Test::Unit::TestCase
         assert_equal @template.title(:site => "Miles Davis"), "<title>Miles Davis</title>"
       end
 
+      should "display the title if no website was specified" do
+        save_basic_title
+        assert_equal @template.title(), '<title>Kind of Blue</title>'
+      end
+
       should "use website before page by default" do
         save_basic_title
-        assert_equal @template.title(:site => "Miles Davis"), "<title>Miles Davis | Kind of Blue</title>"
+        assert_equal @template.title(:site => "Miles Davis", :separator => '|'), "<title>Miles Davis | Kind of Blue</title>"
       end
 
       should "only use markup in titles in the view" do
         assert_equal save_basic_title("<b>Kind of Blue</b>"), "<b>Kind of Blue</b>"
-        assert_equal @template.title(:site => "Miles Davis"), "<title>Miles Davis | Kind of Blue</title>"
+        assert_equal @template.title(:site => "Miles Davis", :separator => '|'), "<title>Miles Davis | Kind of Blue</title>"
       end  
   
       should "use page before website if :reverse" do
         save_basic_title
-        assert_equal @template.title(:site => "Miles Davis", :reverse => true), "<title>Kind of Blue | Miles Davis</title>"
+        assert_equal @template.title(:site => "Miles Davis", :reverse => true, :separator => '|'), "<title>Kind of Blue | Miles Davis</title>"
       end
 
       should "use website before page if :reverse and :reverse_on_default" do
-        assert_equal @template.title(:site => "John Coltrane", :default => "My Favorite Things", :reverse => true, :reverse_on_default => false), "<title>John Coltrane | My Favorite Things</title>"
+        assert_equal @template.title(:site => "John Coltrane", :default => "My Favorite Things", :reverse => true, :reverse_on_default => false, :separator => '|'), "<title>John Coltrane | My Favorite Things</title>"
       end
       
       should "be lowercase if :lowercase" do
         save_basic_title
-        assert_equal @template.title(:site => "Miles Davis", :lowercase => true), "<title>miles davis | kind of blue</title>"
+        assert_equal @template.title(:site => "Miles Davis", :lowercase => true, :separator => '|'), "<title>miles davis | kind of blue</title>"
       end
 
       should "use custom separator if :separator" do
@@ -55,7 +60,7 @@ class TopHatTitleTestCase < Test::Unit::TestCase
       
       should "use custom prefix and suffix if available" do
         save_basic_title
-        assert_equal @template.title(:site => "Miles Davis", :prefix => " |", :suffix => "| "), "<title>Miles Davis ||| Kind of Blue</title>"
+        assert_equal @template.title(:site => "Miles Davis", :prefix => " |", :suffix => "| ", :separator => '|'), "<title>Miles Davis ||| Kind of Blue</title>"
       end 
 
       should "collapse prefix if false" do
@@ -76,12 +81,12 @@ class TopHatTitleTestCase < Test::Unit::TestCase
       
       should "use default one if title is not present or blank" do
         save_basic_title("")
-        assert_equal @template.title(:site => "Miles Davis", :default => "Round About Midnight"), "<title>Miles Davis | Round About Midnight</title>"
+        assert_equal @template.title(:site => "Miles Davis", :default => "Round About Midnight", :separator => '|'), "<title>Miles Davis | Round About Midnight</title>"
       end
 
       should "allow custom options per title" do
         save_custom_title
-        assert_equal @template.title(:site => "Freddie Freeloader"), "<title>Kind of Blue | Freddie Freeloader</title>"
+        assert_equal @template.title(:site => "Freddie Freeloader", :separator => '|'), "<title>Kind of Blue | Freddie Freeloader</title>"
       end
     end
     

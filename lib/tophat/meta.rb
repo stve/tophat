@@ -1,5 +1,5 @@
 module TopHat
-  module MetaHelpers
+  module MetaHelper
 
     def meta_tag(options)
       # tag :meta, :name => options[:name], :content => options[:content]    

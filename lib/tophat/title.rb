@@ -1,7 +1,7 @@
 module TopHat
-  module TitleHelpers
+  module TitleHelper
     
-    def title(title, options={})
+    def title(title=nil, options={})
       if title.is_a? String 
         save_title(title, options)
       else
@@ -15,8 +15,9 @@ module TopHat
       title
     end
 
-    def display_title(options)
-      options = options.merge(@tophat_title_options) unless @tophat_title_options.nil? || @tophat_title_options.empty?
+    def display_title(options={})
+      options ||= {}
+      options = options.merge(@tophat_title_options) unless @tophat_title_options.nil?
 
       # Prefix (leading space)
       if options[:prefix]
@@ -28,11 +29,7 @@ module TopHat
       end
 
       # Separator
-      unless options[:separator].blank?
-        separator = options[:separator]
-      else
-        separator = '|'
-      end
+      separator = options[:separator] || ''
 
       # Suffix (trailing space)
       if options[:suffix]
@@ -43,7 +40,8 @@ module TopHat
         suffix = ' '
       end
       
-      site_name = options[:site]
+      # site name
+      site_name = options[:site] || ''
 
       # Lowercase title?
       if options[:lowercase] == true
@@ -69,18 +67,23 @@ module TopHat
       end
 
       # Set website/page order
-      unless @tophat_title.blank?
-        if @tophat_reverse == true
+      if @tophat_title.blank?
+        # If title is blank, return only website name
+        content_tag :title, site_name if options[:site]
+      else
+        display_title = if @tophat_reverse == true
           # Reverse order => "Page : Website"
-          return content_tag(:title, @tophat_title + prefix + separator + suffix + site_name)
+          @tophat_title + prefix + separator + suffix + site_name
         else
           # Standard order => "Website : Page"
-          return content_tag(:title, site_name + prefix + separator + suffix + @tophat_title)
+          site_name + prefix + separator + suffix + @tophat_title
         end
+        
+        return content_tag(:title, display_title.strip)
       end
 
-      # If title is blank, return only website name
-      content_tag :title, site_name if options[:site]
+
+      
     end
     alias t title
     

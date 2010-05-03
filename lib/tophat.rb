@@ -6,5 +6,5 @@ require 'tophat/meta'
 
 Hash.send :include, TopHat::HashOnly unless Hash.instance_methods.include?("only")
 
-ActionView::Base.send :include, TopHat::TitleHelpers
-ActionView::Base.send :include, TopHat::MetaHelpers
+ActionView::Base.send :include, TopHat::TitleHelper
+ActionView::Base.send :include, TopHat::MetaHelper

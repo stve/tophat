@@ -2,7 +2,7 @@ require 'helper'
 
 class TopHatMetaTestCase < Test::Unit::TestCase
   
-  context "using the meta helpers" do
+  context "using the meta helper" do
    
     setup do
       @template = ActionView::Base.new
