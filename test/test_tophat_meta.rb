@@ -46,6 +46,11 @@ class TopHatMetaTestCase < Test::Unit::TestCase
         assert_nil @template.keywords
       end
       
+      should "merge default tags with page tags, when merge_default is set to true" do
+        @template.keywords("Stu, Pete")
+        assert_equal @template.keywords(:default => "John, Paul, George, Ringo", :merge_default => true), "<meta name=\"keywords\" content=\"Stu, Pete, John, Paul, George, Ringo\" />"
+      end
+      
     end
  
     context "descriptions" do

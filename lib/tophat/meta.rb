@@ -40,20 +40,18 @@ module TopHat
         options ||= {}
         options.merge!(:name => 'keywords')
 
-        if @tophat_keywords.blank?
-          keywords = options.delete(:default)
-          
-          if keywords && keywords.is_a?(Array)
-            keywords = keywords.join(', ')
-          end
-          
-          options.merge!(:content => keywords)
-          
-        else
-          options.merge!(:content => @tophat_keywords) 
-        end
+        default_keywords = options.delete(:default) || []
+        display_keywords = @tophat_keywords.blank? ? default_keywords : @tophat_keywords
+        
+        # normalize the keywords
+        default_keywords = default_keywords.is_a?(String) ? default_keywords.split(', ') : default_keywords
+        display_keywords = display_keywords.is_a?(String) ? display_keywords.split(', ') : display_keywords        
+        
+        # merge keyword arrays if merge is set to true
+        display_keywords += default_keywords if options.delete(:merge_default) == true
 
-        meta_tag(options) if options[:content]
+        options.merge!(:content => display_keywords.uniq.join(', '))
+        meta_tag(options) if display_keywords.any?
       end    
     end
   end
