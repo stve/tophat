@@ -2,6 +2,21 @@ h1. TopHat
 
 TopHat is a set of view helpers to keep your layouts and views DRY.
 
+h2. Installation
+
+To install as a gem, add the following to @config/environment.rb@:
+
+<pre>
+config.gem 'tophat', :version => '>= x.x'
+</pre>
+
+To install as a plugin:
+
+<pre>
+script/plugin install git://github.com/spagalloco/tophat.git
+</pre>
+
+
 h2. Layout Usage
 
 You'll want to add the relevant TopHat helpers to your layouts:
@@ -9,8 +24,8 @@ You'll want to add the relevant TopHat helpers to your layouts:
 <pre>
 <head>
   <%= title :site => "My website" %>
-  <%= keywords "Some default, keywords, that can be overridden" %>
-  <%= description "A description" %>
+  <%= keywords :default => "Some default, keywords, that can be overridden" %>
+  <%= description :default => "A description" %>
 </head>
 </pre>
 
