@@ -66,6 +66,7 @@ module TopHat
     def browser_conditional(browser, version = nil, operator = nil, &block)
       unless operator.blank?
         operator = operator.to_s
+        operator = '!' if operator == 'not'
         operator << " " unless operator == '!'
       end
       

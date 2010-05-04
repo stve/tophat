@@ -55,6 +55,16 @@ class TopHatStylesheetTestCase < Test::Unit::TestCase
         }, "<!--[if gte IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
       end
       
+      should "render defined IE conditional with ! operator" do
+        assert_equal @template.ie_5_conditional(:not) { 
+          @template.stylesheet_link_tag(@stylesheet) 
+        }, "<!--[if !IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+        
+        assert_equal @template.ie_5_5_conditional(:not) { 
+          @template.stylesheet_link_tag(@stylesheet) 
+        }, "<!--[if !IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+      end
+      
       should "render defined IE conditional with less than operator" do
         assert_equal @template.ie_5_conditional(:lt) { 
           @template.stylesheet_link_tag(@stylesheet) 
