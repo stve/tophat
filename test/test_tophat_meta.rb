@@ -77,6 +77,10 @@ class TopHatMetaTestCase < Test::Unit::TestCase
         assert_equal @template.meta_tag(:name => 'viewport', :content => 'width=device-width'), "<meta name=\"viewport\" content=\"width=device-width\" />"
       end
       
+      should "not render when no arguments are passed" do
+        assert_nil @template.meta_tag()
+      end
+      
     end
     
   end

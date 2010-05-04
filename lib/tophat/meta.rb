@@ -1,9 +1,9 @@
 module TopHat
   module MetaHelper
 
-    def meta_tag(options)
+    def meta_tag(options={})
       # tag :meta, :name => options[:name], :content => options[:content]    
-      "<meta name=\"#{options[:name]}\" content=\"#{options[:content]}\" />"
+      "<meta name=\"#{options[:name]}\" content=\"#{options[:content]}\" />" if options[:name] && options[:content]
     end
 
     # page descriptions
