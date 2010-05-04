@@ -35,7 +35,7 @@ class TopHatStylesheetTestCase < Test::Unit::TestCase
         }, "<!--[if IE 8]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
       end
       
-      should "defined IE conditional with greater than operator" do
+      should "render defined IE conditional with greater than operator" do
         assert_equal @template.ie_5_conditional(:gt) { 
           @template.stylesheet_link_tag(@stylesheet) 
         }, "<!--[if gt IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
@@ -45,7 +45,7 @@ class TopHatStylesheetTestCase < Test::Unit::TestCase
         }, "<!--[if gt IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
       end
       
-      should "defined IE conditional with greater than or equal to operator" do
+      should "render defined IE conditional with greater than or equal to operator" do
         assert_equal @template.ie_5_conditional(:gte) { 
           @template.stylesheet_link_tag(@stylesheet) 
         }, "<!--[if gte IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
@@ -55,7 +55,7 @@ class TopHatStylesheetTestCase < Test::Unit::TestCase
         }, "<!--[if gte IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
       end
       
-      should "defined IE conditional with less than operator" do
+      should "render defined IE conditional with less than operator" do
         assert_equal @template.ie_5_conditional(:lt) { 
           @template.stylesheet_link_tag(@stylesheet) 
         }, "<!--[if lt IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
@@ -65,7 +65,7 @@ class TopHatStylesheetTestCase < Test::Unit::TestCase
         }, "<!--[if lt IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
       end
       
-      should "defined IE conditional with less than or equal to operator" do
+      should "render defined IE conditional with less than or equal to operator" do
         assert_equal @template.ie_5_conditional(:lte) { 
           @template.stylesheet_link_tag(@stylesheet) 
         }, "<!--[if lte IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
@@ -75,7 +75,7 @@ class TopHatStylesheetTestCase < Test::Unit::TestCase
         }, "<!--[if lte IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
       end
       
-      should "defined IE conditional with equal to operator" do
+      should "render defined IE conditional with equal to operator" do
         assert_equal @template.ie_5_conditional(:eq) { 
           @template.stylesheet_link_tag(@stylesheet) 
         }, "<!--[if eq IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
@@ -83,6 +83,24 @@ class TopHatStylesheetTestCase < Test::Unit::TestCase
         assert_equal @template.ie_5_5_conditional(:eq) { 
           @template.stylesheet_link_tag(@stylesheet) 
         }, "<!--[if eq IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+      end
+      
+      should "render defined conditionals for other browsers" do
+        assert_equal @template.opera_conditional { 
+          @template.stylesheet_link_tag(@stylesheet) 
+        }, "<!--[if Opera]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+        
+        assert_equal @template.webkit_conditional { 
+          @template.stylesheet_link_tag(@stylesheet) 
+        }, "<!--[if Webkit]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+
+        assert_equal @template.webkit_conditional(:eq) { 
+          @template.stylesheet_link_tag(@stylesheet) 
+        }, "<!--[if eq Webkit]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+        
+        assert_equal @template.gecko_conditional { 
+          @template.stylesheet_link_tag(@stylesheet) 
+        }, "<!--[if Gecko]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
       end
     end
     
