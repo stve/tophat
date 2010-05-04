@@ -71,6 +71,13 @@ class TopHatMetaTestCase < Test::Unit::TestCase
 
     end
     
+    context "meta" do
+      
+      should "render properly" do
+        assert_equal @template.meta_tag(:name => 'viewport', :content => 'width=device-width'), "<meta name=\"viewport\" content=\"width=device-width\" />"
+      
+    end
+    
   end
   
 end
