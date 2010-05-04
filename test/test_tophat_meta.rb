@@ -75,6 +75,8 @@ class TopHatMetaTestCase < Test::Unit::TestCase
       
       should "render properly" do
         assert_equal @template.meta_tag(:name => 'viewport', :content => 'width=device-width'), "<meta name=\"viewport\" content=\"width=device-width\" />"
+        assert_equal @template.meta_tag(:name => 'robots', :content => 'all'), "<meta name=\"robots\" content=\"all\" />"
+        assert_equal @template.meta_tag(:http_equiv => 'Content-Language', :content => 'en-us'), "<meta http-equiv=\"Content-Language\" content=\"en-us\" />"
       end
       
       should "not render when no arguments are passed" do

@@ -3,7 +3,12 @@ module TopHat
 
     def meta_tag(options={})
       # tag :meta, :name => options[:name], :content => options[:content]    
-      "<meta name=\"#{options[:name]}\" content=\"#{options[:content]}\" />" if options[:name] && options[:content]
+      if options[:content] && (options[:name] || options[:http_equiv])
+        t = "<meta "
+        t << "name=\"#{options[:name]}\"" if options[:name]
+        t << "http-equiv=\"#{options[:http_equiv]}\"" if options[:http_equiv]
+        t << " content=\"#{options[:content]}\" />" 
+      end
     end
 
     # page descriptions
