@@ -80,7 +80,7 @@ class TopHatMetaTestCase < Test::Unit::TestCase
       end
       
       should "not render when no arguments are passed" do
-        assert_nil @template.meta_tag()
+        assert_nil @template.meta_tag
       end
       
     end
