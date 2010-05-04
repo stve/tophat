@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{tophat}
-  s.version = "1.0.0"
+  s.version = "1.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Steve Agalloco"]
-  s.date = %q{2010-05-01}
+  s.date = %q{2010-05-04}
   s.description = %q{simple view helpers for your layouts}
   s.email = %q{steve.agalloco@gmail.com}
   s.extra_rdoc_files = [
@@ -25,12 +25,14 @@ Gem::Specification.new do |s|
      "lib/tophat.rb",
      "lib/tophat/core_extensions.rb",
      "lib/tophat/meta.rb",
+     "lib/tophat/stylesheet.rb",
      "lib/tophat/title.rb",
      "lib/tophat/version.rb",
      "rails/init.rb",
      "test/helper.rb",
      "test/test_tophat.rb",
      "test/test_tophat_meta.rb",
+     "test/test_tophat_stylesheets.rb",
      "test/test_tophat_title.rb",
      "tophat.gemspec"
   ]
@@ -43,6 +45,7 @@ Gem::Specification.new do |s|
     "test/helper.rb",
      "test/test_tophat.rb",
      "test/test_tophat_meta.rb",
+     "test/test_tophat_stylesheets.rb",
      "test/test_tophat_title.rb"
   ]
 
