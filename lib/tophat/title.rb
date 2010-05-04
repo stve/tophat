@@ -3,19 +3,21 @@ module TopHat
     
     def title(title=nil, options={})
       if title.is_a? String 
-        save_title(title, options)
+        save_tophat_title(title, options)
       else
-        display_title(title)
+        display_tophat_title(title)
       end
     end
+    
+    private
 
-    def save_title(title, options)
+    def save_tophat_title(title, options)
       @tophat_title = title.gsub(/<\/?[^>]*>/, '')
       @tophat_title_options = options
       title
     end
 
-    def display_title(options={})
+    def display_tophat_title(options={})
       options ||= {}
       options = options.merge(@tophat_title_options) unless @tophat_title_options.nil?
 
