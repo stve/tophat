@@ -8,6 +8,13 @@ require 'tophat/robots'
 
 Hash.send :include, TopHat::HashOnly unless Hash.instance_methods.include?("only")
 
+module TopHat
+  autoload :TitleHelper,      'tophat/title'
+  autoload :MetaHelper,       'tophat/meta'
+  autoload :StylesheetHelper, 'tophat/stylesheet'
+  autoload :RobotsHelper,     'tophat/robots'
+end
+
 ActionView::Base.send :include, TopHat::TitleHelper
 ActionView::Base.send :include, TopHat::MetaHelper
 ActionView::Base.send :include, TopHat::StylesheetHelper
