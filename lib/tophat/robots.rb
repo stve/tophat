@@ -2,16 +2,16 @@ module TopHat
   module RobotsHelper
 
     def noindex(descriptor='robots')
-      meta_tag(:name => descriptor, :content => 'noindex')
+      tag(:meta, :name => descriptor, :content => 'noindex')
     end
     
     def nofollow(descriptor='robots')
-      meta_tag(:name => descriptor, :content => 'nofollow')
+      tag(:meta, :name => descriptor, :content => 'nofollow')
     end
     
     def canonical(path=nil)
       if path
-        '<link rel="canonical" href="' + path + '" />'
+        tag(:link, :rel => 'canonical', :href => path)
       end
     end
     

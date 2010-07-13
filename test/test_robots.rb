@@ -13,11 +13,11 @@ class TopHatRobotsTestCase < Test::Unit::TestCase
       context "nofollow" do
         
         should "default to all robots" do
-          assert_equal @template.nofollow, "<meta name=\"robots\" content=\"nofollow\" />"
+          assert_equal @template.nofollow, "<meta content=\"nofollow\" name=\"robots\" />"
         end
         
         should "use a descriptor if one is provided" do
-          assert_equal @template.nofollow('googlebot'), "<meta name=\"googlebot\" content=\"nofollow\" />"
+          assert_equal @template.nofollow('googlebot'), "<meta content=\"nofollow\" name=\"googlebot\" />"
         end
         
       end
@@ -25,11 +25,11 @@ class TopHatRobotsTestCase < Test::Unit::TestCase
       context "noindex" do
         
         should "default to all robots" do
-          assert_equal @template.noindex, "<meta name=\"robots\" content=\"noindex\" />"
+          assert_equal @template.noindex, "<meta content=\"noindex\" name=\"robots\" />"
         end
         
         should "use a descriptor if one is provided" do
-          assert_equal @template.noindex('googlebot'), "<meta name=\"googlebot\" content=\"noindex\" />"
+          assert_equal @template.noindex('googlebot'), "<meta content=\"noindex\" name=\"googlebot\" />"
         end
         
       end
@@ -41,7 +41,7 @@ class TopHatRobotsTestCase < Test::Unit::TestCase
         end
         
         should "render a tag when passed a path" do
-          assert_equal @template.canonical('http://mysite.com/somepath/'), "<link rel=\"canonical\" href=\"http://mysite.com/somepath/\" />"
+          assert_equal @template.canonical('http://mysite.com/somepath/'), "<link href=\"http://mysite.com/somepath/\" rel=\"canonical\" />"
         end
         
       end

@@ -1,16 +1,6 @@
 module TopHat
   module MetaHelper
 
-    def meta_tag(options={})
-      # tag :meta, :name => options[:name], :content => options[:content]    
-      if options[:content] && (options[:name] || options[:http_equiv])
-        t = "<meta "
-        t << "name=\"#{options[:name]}\"" if options[:name]
-        t << "http-equiv=\"#{options[:http_equiv]}\"" if options[:http_equiv]
-        t << " content=\"#{options[:content]}\" />" 
-      end
-    end
-
     # page descriptions
     # <meta name="description" content="Description goes here." />
     def description(options=nil)
@@ -28,7 +18,7 @@ module TopHat
           options.merge!(:content => @tophat_description) 
         end
 
-        meta_tag(options) if options[:content]
+        tag(:meta, options) if options[:content]
       end    
     end
 
@@ -56,7 +46,7 @@ module TopHat
         display_keywords += default_keywords if options.delete(:merge_default) == true
 
         options.merge!(:content => display_keywords.uniq.join(', '))
-        meta_tag(options) if display_keywords.any?
+        tag(:meta, options) if display_keywords.any?
       end    
     end
   end

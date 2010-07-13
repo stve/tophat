@@ -21,7 +21,7 @@ class TopHatMetaTestCase < Test::Unit::TestCase
         end
         
         should "use default keywords if keywords is empty" do
-          assert_equal @template.keywords(:default => @keywords), "<meta name=\"keywords\" content=\"#{@keywords.join(', ')}\" />"
+          assert_equal @template.keywords(:default => @keywords), "<meta content=\"#{@keywords.join(', ')}\" name=\"keywords\" />"
         end
         
       end
@@ -37,7 +37,7 @@ class TopHatMetaTestCase < Test::Unit::TestCase
         end
 
         should "use default keywords passed as a string if keywords is empty" do
-          assert_equal @template.keywords(:default => @keywords), "<meta name=\"keywords\" content=\"#{@keywords}\" />"
+          assert_equal @template.keywords(:default => @keywords), "<meta content=\"#{@keywords}\" name=\"keywords\" />"
         end
         
       end
@@ -48,7 +48,7 @@ class TopHatMetaTestCase < Test::Unit::TestCase
       
       should "merge default tags with page tags, when merge_default is set to true" do
         @template.keywords("Stu, Pete")
-        assert_equal @template.keywords(:default => "John, Paul, George, Ringo", :merge_default => true), "<meta name=\"keywords\" content=\"Stu, Pete, John, Paul, George, Ringo\" />"
+        assert_equal @template.keywords(:default => "John, Paul, George, Ringo", :merge_default => true), "<meta content=\"Stu, Pete, John, Paul, George, Ringo\" name=\"keywords\" />"
       end
       
     end
@@ -62,27 +62,13 @@ class TopHatMetaTestCase < Test::Unit::TestCase
  
       should "use the default description if no description is defined" do
         desc = "A flute without holes, is not a flute. A donut without a hole, is a Danish."
-        assert_equal @template.description(:default => desc), "<meta name=\"description\" content=\"#{desc}\" />"
+        assert_equal @template.description(:default => desc), "<meta content=\"#{desc}\" name=\"description\" />"
       end
 
       should "not return a tag if no default is configured and no description is defined" do
         assert_nil @template.description
       end
 
-    end
-    
-    context "meta" do
-      
-      should "render properly" do
-        assert_equal @template.meta_tag(:name => 'viewport', :content => 'width=device-width'), "<meta name=\"viewport\" content=\"width=device-width\" />"
-        assert_equal @template.meta_tag(:name => 'robots', :content => 'all'), "<meta name=\"robots\" content=\"all\" />"
-        assert_equal @template.meta_tag(:http_equiv => 'Content-Language', :content => 'en-us'), "<meta http-equiv=\"Content-Language\" content=\"en-us\" />"
-      end
-      
-      should "not render when no arguments are passed" do
-        assert_nil @template.meta_tag
-      end
-      
     end
     
   end
