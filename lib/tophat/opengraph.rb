@@ -3,21 +3,18 @@ module TopHat
 
     class OpenGraphGenerator
       def initialize(options={})
+        @app_id = options.delete(:app_id)
         @admins = options.delete(:admins)
-        @site_name = options.delete(:site_name)
       end
       
-      def site_name
-        "<meta property=\"og:site_name\" content=\"#{@site_name}\"/>" if @site_name
+      def app_id
+        @app_id ? "<meta property=\"fb:app_id\" content=\"#{@app_id}\"/>" : ""
       end
       
       def admins
-        "<meta property=\"og:fb_admins\" content=\"#{[*@admins].join(',')}\"/>" if @admins
+        @admins ? "<meta property=\"fb:admins\" content=\"#{[*@admins].join(',')}\"/>" : ""
       end
       
-      def to_s
-        "generator: #{@site_name}"
-      end
     end
     
     def opengraph(options=nil, &block)
@@ -26,8 +23,8 @@ module TopHat
       else
         og = OpenGraphGenerator.new(@open_graph_defaults)
         output = ""
-        output << og.site_name if og.site_name
-        output << og.admins if og.admins
+        output << og.app_id
+        output << og.admins
         output << yield if block_given?
         output
       end
