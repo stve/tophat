@@ -1,6 +1,6 @@
 require 'helper'
 
-class TopHatTitleTestCase < Test::Unit::TestCase
+class TopHatOpenGraphTestCase < Test::Unit::TestCase
 
   context "when using the open graph helpers" do
     
@@ -8,28 +8,37 @@ class TopHatTitleTestCase < Test::Unit::TestCase
       @template = ActionView::Base.new
     end
     
-    context "site admins" do
+    context "site admins when configured" do
+    
+      context "as a string" do
       
-      should "generate a site admin tag when configured with an admin as a string" do
-        @template.opengraph(:admins => '123,124')
-        assert_equal @template.opengraph, '<meta property="fb:admins" content="123,124"/>'
+        should "generate a site admin tag" do
+          @template.opengraph(:admins => '123,124')
+          assert_equal @template.opengraph, '<meta content="123,124" property="fb:admins" />'
+        end
+      
       end
-      
-      should "generate a site admin tag when configured with an admin as an array" do
-        @template.opengraph(:admins => [123, 124])
-        assert_equal @template.opengraph, '<meta property="fb:admins" content="123,124"/>'
+    
+      context "as an array" do
+
+        should "generate a site admin tag" do
+          @template.opengraph(:admins => [123, 124])
+          assert_equal @template.opengraph, '<meta content="123,124" property="fb:admins" />'
+        end
+        
       end
       
     end
     
-    context "app_id" do
+    context "app_id when configured" do
       
-      should "generate a app_id" do
+      should "generate an app_id meta tag" do
         @template.opengraph(:app_id => 'MyApp')
-        assert_equal @template.opengraph, '<meta property="fb:app_id" content="MyApp"/>'
+        assert_equal @template.opengraph, '<meta content="MyApp" property="fb:app_id" />'
       end
       
     end
+    
   end
   
 end

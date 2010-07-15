@@ -2,26 +2,33 @@ module TopHat
   module OpenGraphHelper
 
     class OpenGraphGenerator
+      include ActionView::Helpers
+      
       def initialize(options={})
         @app_id = options.delete(:app_id)
         @admins = options.delete(:admins)
+        @graph_data = {}
       end
       
       def app_id
-        @app_id ? "<meta property=\"fb:app_id\" content=\"#{@app_id}\"/>" : ""
+        @app_id ? tag(:meta, :property => 'fb:app_id', :content => @app_id) : ""
       end
       
       def admins
-        @admins ? "<meta property=\"fb:admins\" content=\"#{[*@admins].join(',')}\"/>" : ""
+        @admins ? tag(:meta, :property => 'fb:admins', :content => [*@admins].join(',')) : ""
+      end
+      
+      def method_missing(method, *args, &block) #:nodoc
+        @graph_data[method] = args.shift
       end
       
     end
     
     def opengraph(options=nil, &block)
       if options.kind_of? Hash
-        @open_graph_defaults = options || {}
+        @tophat_open_graph_defaults = options || {}
       else
-        og = OpenGraphGenerator.new(@open_graph_defaults)
+        og = OpenGraphGenerator.new(@tophat_open_graph_defaults)
         output = ""
         output << og.app_id
         output << og.admins
@@ -41,8 +48,7 @@ end
 # In addition, we've extended the basic meta data to add two required fields to connect your page with:
 # 
 #     * og:site_name - A human-readable name for your site, e.g., "IMDb". The Open Graph Protocol defines this as optional, but Facebook requires it.
-#     * fb:admins or fb:app_id - A comma-separated list of either Facebook user IDs or a Facebook Platform application ID that administers this page.
-# 
+
 # It's also recommended that you include the following property as well as these multi-part properties.
 # 
 #     * og:description - A one to two sentence description of your page.
