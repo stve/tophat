@@ -27,6 +27,11 @@ module TopHat
         output
       end
       
+      def type(t)
+        @graph_data ||= {}
+        @graph_data[:type] = t
+      end
+      
       def has_graph_data?
         @graph_data
       end
