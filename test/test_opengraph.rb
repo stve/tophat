@@ -55,6 +55,14 @@ class TopHatOpenGraphTestCase < Test::Unit::TestCase
         assert_equal @template.opengraph, '<meta content="sports_team" property="og:type" />'
       end
       
+      should "support multiple tags" do
+        @template.opengraph do |graph|
+          graph.title 'Austin Powers: International Man of Mystery'
+          graph.type 'movie'
+        end
+        assert_equal @template.opengraph, '<meta content="movie" property="og:type" />\n<meta content="Austin Powers: International Man of Mystery" property="og:title" />\n'
+      end
+      
     end
     
   end
