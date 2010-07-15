@@ -48,6 +48,13 @@ class TopHatOpenGraphTestCase < Test::Unit::TestCase
         assert_equal @template.opengraph, '<meta content="The Great Gatsby" property="og:title" />'
       end
       
+      should "allow use of the tag 'type'" do
+        @template.opengraph do |graph|
+          graph.type 'sports_team'
+        end
+        assert_equal @template.opengraph, '<meta content="sports_team" property="og:type" />'
+      end
+      
     end
     
   end
