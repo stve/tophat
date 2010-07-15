@@ -59,7 +59,8 @@ module TopHat
       end
     end
     
-    def fb_like()
+    def fb_like(options={})
+      tag("fb:like", options)
     end
     
   end
