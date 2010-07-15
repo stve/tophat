@@ -65,12 +65,6 @@ class TopHatOpenGraphTestCase < Test::Unit::TestCase
       
     end
     
-    context "generating a like button" do
-      should "render the tag" do
-        assert_equal @template.fb_like(:href => 'http://developers.facebook.com/', :width => '450', :height => 80), '<fb:like height="80" href="http://developers.facebook.com/" width="450" />'
-      end
-    end
-    
   end
   
 end
