@@ -5,8 +5,8 @@ module TopHat
       include ActionView::Helpers
       
       def initialize(options={})
-        @app_id = options.delete(:app_id)
-        @admins = options.delete(:admins)
+        @app_id = options.delete(:app_id) if options && options.has_key?(:app_id)
+        @admins = options.delete(:admins) if options && options.has_key?(:admins)
         @graph_data = {}
       end
       
@@ -18,7 +18,21 @@ module TopHat
         @admins ? tag(:meta, :property => 'fb:admins', :content => [*@admins].join(',')) : ""
       end
       
+      def render_graph_data
+        output = ""
+        @graph_data.each_pair do |key, value|
+          output << tag(:meta, :property => "og:#{key}", :content => value)
+          # output << "\n"
+        end
+        output
+      end
+      
+      def has_graph_data?
+        @graph_data
+      end
+      
       def method_missing(method, *args, &block) #:nodoc
+        @graph_data ||= {}
         @graph_data[method] = args.shift
       end
       
@@ -26,13 +40,16 @@ module TopHat
     
     def opengraph(options=nil, &block)
       if options.kind_of? Hash
-        @tophat_open_graph_defaults = options || {}
+        @tophat_open_graph_defaults = options
+      elsif block_given?
+        @tophat_open_graph_generator = OpenGraphGenerator.new(@tophat_open_graph_defaults)
+        yield(@tophat_open_graph_generator)
       else
-        og = OpenGraphGenerator.new(@tophat_open_graph_defaults)
+        @tophat_open_graph_generator ||= OpenGraphGenerator.new(@tophat_open_graph_defaults)
         output = ""
-        output << og.app_id
-        output << og.admins
-        output << yield if block_given?
+        output << @tophat_open_graph_generator.app_id
+        output << @tophat_open_graph_generator.admins
+        output << @tophat_open_graph_generator.render_graph_data if @tophat_open_graph_generator.has_graph_data?
         output
       end
     end
