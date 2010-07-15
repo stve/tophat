@@ -39,6 +39,17 @@ class TopHatOpenGraphTestCase < Test::Unit::TestCase
       
     end
     
+    context "additional open graph properties" do
+      
+      should "generate tags" do
+        @template.opengraph do
+          og.title 'The Great Gatsby'
+        end
+        assert_equal @template.opengraph, '<meta property="og:title" content="The Great Gatsby" />'
+      end
+      
+    end
+    
   end
   
 end
