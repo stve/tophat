@@ -11,11 +11,15 @@ module TopHat
       end
       
       def app_id
-        @app_id ? tag(:meta, :property => 'fb:app_id', :content => @app_id) : ""
+        output = @app_id ? tag(:meta, :property => 'fb:app_id', :content => @app_id) : ""
+        output << '\n' unless output.blank?
+        output
       end
       
       def admins
-        @admins ? tag(:meta, :property => 'fb:admins', :content => [*@admins].join(',')) : ""
+        output = @admins ? tag(:meta, :property => 'fb:admins', :content => [*@admins].join(',')) : ""
+        output << '\n' unless output.blank?
+        output
       end
       
       def render_graph_data
@@ -46,7 +50,8 @@ module TopHat
     def opengraph(options=nil, &block)
       if options.kind_of? Hash
         @tophat_open_graph_defaults = options
-      elsif block_given?
+      end
+      if block_given?
         @tophat_open_graph_generator = OpenGraphGenerator.new(@tophat_open_graph_defaults)
         yield(@tophat_open_graph_generator)
       else
