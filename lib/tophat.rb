@@ -1,5 +1,4 @@
 require 'action_view'
-require 'tophat/version'
 require 'tophat/title'
 require 'tophat/meta'
 require 'tophat/stylesheet'
