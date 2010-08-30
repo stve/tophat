@@ -73,6 +73,14 @@ class TopHatOpenGraphTestCase < Test::Unit::TestCase
         end
         assert_equal @template.opengraph, '<meta content="MyApp" property="fb:app_id" />\n<meta content="123,1234" property="fb:admins" />\n<meta content="movie" property="og:type" />\n<meta content="Rain Man" property="og:title" />\n'
       end
+      
+      should "generate all tags - alternative usage" do
+        @template.opengraph do |graph|
+          graph.title 'Rain Man'
+          graph.type 'movie'
+        end
+        assert_equal @template.opengraph(:app_id => 'MyApp', :admins => [123, 1234]), '<meta content="MyApp" property="fb:app_id" />\n<meta content="123,1234" property="fb:admins" />\n<meta content="movie" property="og:type" />\n<meta content="Rain Man" property="og:title" />\n'
+      end
     end
     
   end

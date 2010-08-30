@@ -10,6 +10,11 @@ module TopHat
         @graph_data = {}
       end
       
+      def merge(options={})
+        @app_id = options.delete(:app_id) if options && options.has_key?(:app_id)
+        @admins = options.delete(:admins) if options && options.has_key?(:admins)
+      end
+      
       def app_id
         output = @app_id ? tag(:meta, :property => 'fb:app_id', :content => @app_id) : ""
         output << '\n' unless output.blank?
@@ -55,7 +60,8 @@ module TopHat
         @tophat_open_graph_generator = OpenGraphGenerator.new(@tophat_open_graph_defaults)
         yield(@tophat_open_graph_generator)
       else
-        @tophat_open_graph_generator ||= OpenGraphGenerator.new(@tophat_open_graph_defaults)
+        @tophat_open_graph_generator ||= OpenGraphGenerator.new
+        @tophat_open_graph_generator.merge(@tophat_open_graph_defaults)
         output = ""
         output << @tophat_open_graph_generator.app_id
         output << @tophat_open_graph_generator.admins
