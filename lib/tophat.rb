@@ -1,12 +1,9 @@
 require 'action_view'
 require 'tophat/version'
-require 'tophat/core_extensions'
 require 'tophat/title'
 require 'tophat/meta'
 require 'tophat/stylesheet'
 require 'tophat/robots'
-
-Hash.send :include, TopHat::HashOnly unless Hash.instance_methods.include?("only")
 
 module TopHat
   autoload :TitleHelper,      'tophat/title'
