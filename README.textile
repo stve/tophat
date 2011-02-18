@@ -109,7 +109,7 @@ keywords and descriptions can also take a default in the layout:
 </pre>
 
 h2. Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
@@ -120,4 +120,4 @@ h2. Note on Patches/Pull Requests
 
 h2. Copyright
 
-Copyright (c) 2010 Steve Agalloco. See LICENSE for details.
+Copyright (c) 2011 Steve Agalloco. See LICENSE for details.
