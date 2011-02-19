@@ -1,51 +1,34 @@
-h1. TopHat
+TopHat
+======
 
 TopHat is a set of view helpers to keep your layouts and views DRY.
 
-h2. Installation
-
-To install as a gem, add the following to @config/environment.rb@:
-
-<pre>
-config.gem 'tophat', :version => '>= x.x'
-</pre>
-
-To install as a plugin:
-
-<pre>
-script/plugin install git://github.com/spagalloco/tophat.git
-</pre>
-
-
-h2. Layout Usage
+Layout Usage
+------------
 
 You'll want to add the relevant TopHat helpers to your layouts:
 
-<pre>
-<head>
-  <%= title :site => "My website" %>
-  <%= keywords :default => "Some default, keywords, that can be overridden" %>
-  <%= description :default => "A description" %>
-</head>
-</pre>
+    <head>
+      <%= title :site => "My website" %>
+      <%= keywords :default => "Some default, keywords, that can be overridden" %>
+      <%= description :default => "A description" %>
+    </head>
 
-h2. View Usage
+View Usage
+----------
 
 To set the page title, use the title method to each of your views:
 
-<pre>
-<% title "My page title" %>
-</pre>
+    <% title "My page title" %>
 
 When rendered, the page title will be included in your view.
 
-<pre>
-<head>
-  <title>My website | My page title</title>
-</head>
-</pre>
+    <head>
+      <title>My website | My page title</title>
+    </head>
 
-h2. Usage Options
+Usage Options
+-------------
 
 Use these options to customize the title format:
 
@@ -58,57 +41,45 @@ Use these options to customize the title format:
 
 And here are a few examples to give you ideas.
 
-<pre>
-<%= title :separator => "&mdash;" %>
-<%= title :prefix => false, :separator => ":" %>
-<%= title :lowercase => true %>
-<%= title :reverse => true, :prefix => false %>
-<%= title :default => "The ultimate site for Rails" %>
-</pre>
+    <%= title :separator => "|" %>
+    <%= title :prefix => false, :separator => ":" %>
+    <%= title :lowercase => true %>
+    <%= title :reverse => true, :prefix => false %>
+    <%= title :default => "The ultimate site for Rails" %>
 
 These options can be set as defaults for your layout, or when setting the title in your views, you can override any of the default settings by passing an optional hash
 
-<pre>
-<% title "My page title", :lowercase => true, :separator => "~" %>
-</pre>
+    <% title "My page title", :lowercase => true, :separator => "~" %>
 
-h2. Meta Tag Usage
+Meta Tag Usage
+--------------
 
 TopHat also works with keywords and descriptions.  In your view, simply declare the keywords and description.
 
-<pre>
-<% description('You say goodbye, I say hello.') %>
-<% keywords('John, Paul, George, Ringo') %>
-</pre>
+    <% description('You say goodbye, I say hello.') %>
+    <% keywords('John, Paul, George, Ringo') %>
 
 Keywords can also be passed as an array:
 
-<pre>
-<% keywords(%w{ John Paul George Ringo }) %>
-</pre>
+    <% keywords(%w{ John Paul George Ringo }) %>
 
 Then in your layout, add the keyword and description helpers:
 
-<pre>
-<%= keywords %>
-<%= description %>
-</pre>
+    <%= keywords %>
+    <%= description %>
 
-which will output the meta-tag:
+which will output the meta-tags:
 
-<pre>
-<meta name="keywords" content="John, Paul, George, Ringo" />
-<meta name="description" content="You say goodbye, I say hello." />
-</pre>
+    <meta name="keywords" content="John, Paul, George, Ringo" />
+    <meta name="description" content="You say goodbye, I say hello." />
 
 keywords and descriptions can also take a default in the layout:
 
-<pre>
-<%= keywords :default => 'default keywords if none are passed' %>
-<%= description :default => 'default description if none is passed' %>
-</pre>
+    <%= keywords :default => 'default keywords if none are passed' %>
+    <%= description :default => 'default description if none is passed' %>
 
-h2. Note on Patches/Pull Requests
+Note on Patches/Pull Requests
+-----------------------------
 
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -118,6 +89,7 @@ h2. Note on Patches/Pull Requests
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-h2. Copyright
+Copyright
+---------
 
 Copyright (c) 2011 Steve Agalloco. See LICENSE for details.
