@@ -1,14 +1,14 @@
 module TopHat
   module TitleHelper
-    
+
     def title(title=nil, options={})
-      if title.is_a? String 
+      if title.is_a? String
         save_tophat_title(title, options)
       else
         display_tophat_title(title)
       end
     end
-    
+
     private
 
     def save_tophat_title(title, options)
@@ -41,7 +41,7 @@ module TopHat
       else
         suffix = ' '
       end
-      
+
       # site name
       site_name = options[:site] || ''
 
@@ -80,14 +80,14 @@ module TopHat
           # Standard order => "Website : Page"
           site_name + prefix + separator + suffix + @tophat_title
         end
-        
+
         return content_tag(:title, display_title.strip)
       end
 
 
-      
+
     end
     alias t title
-    
+
   end
 end

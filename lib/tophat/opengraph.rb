@@ -3,30 +3,30 @@ module TopHat
 
     class OpenGraphGenerator
       include ActionView::Helpers
-      
+
       def initialize(options={})
         @app_id = options.delete(:app_id) if options && options.has_key?(:app_id)
         @admins = options.delete(:admins) if options && options.has_key?(:admins)
         @graph_data = {}
       end
-      
+
       def merge(options={})
         @app_id = options.delete(:app_id) if options && options.has_key?(:app_id)
         @admins = options.delete(:admins) if options && options.has_key?(:admins)
       end
-      
+
       def app_id
         output = @app_id ? tag(:meta, :property => 'fb:app_id', :content => @app_id) : ""
         output << '\n' unless output.blank?
         output
       end
-      
+
       def admins
         output = @admins ? tag(:meta, :property => 'fb:admins', :content => [*@admins].join(',')) : ""
         output << '\n' unless output.blank?
         output
       end
-      
+
       def render_graph_data
         output = ""
         @graph_data.each_pair do |key, value|
@@ -35,23 +35,23 @@ module TopHat
         end
         output
       end
-      
+
       def type(t)
         @graph_data ||= {}
         @graph_data[:type] = t
       end
-      
+
       def has_graph_data?
         @graph_data
       end
-      
+
       def method_missing(method, *args, &block) #:nodoc
         @graph_data ||= {}
         @graph_data[method] = args.shift
       end
-      
+
     end
-    
+
     def opengraph(options=nil, &block)
       if options.kind_of? Hash
         @tophat_open_graph_defaults = options
@@ -69,7 +69,6 @@ module TopHat
         output
       end
     end
-    
+
   end
 end
-                
