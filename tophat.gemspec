@@ -12,11 +12,12 @@ Gem::Specification.new do |s|
   s.description = %q{simple view helpers for your layouts}
   s.summary     = %q{simple view helpers for your layouts}
 
-  s.add_runtime_dependency('actionpack', '>= 2.3.5')
+  s.add_runtime_dependency('actionpack', '>= 3.0.0')
 
   s.add_development_dependency('shoulda', '>= 0')
   s.add_development_dependency('yard', '~> 0.6')
   s.add_development_dependency('maruku', '~> 0.6')
+  s.add_development_dependency('rails', '>= 3.0.0')
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
