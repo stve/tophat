@@ -75,8 +75,13 @@ which will output the meta-tags:
 
 keywords and descriptions can also take a default in the layout:
 
-    <%= keywords :default => 'default keywords if none are passed' %>
+    <%= keywords :default => 'Yoko, Linda' %>
     <%= description :default => 'default description if none is passed' %>
+
+want to merge your default tags with those in your view? just pass merge_default => true
+
+    <%= keywords :default => 'Yoko, Linda', :merge_default => true %>
+
 
 Note on Patches/Pull Requests
 -----------------------------
