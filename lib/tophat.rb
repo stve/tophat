@@ -1,8 +1,4 @@
 require 'action_view'
-require 'tophat/title'
-require 'tophat/meta'
-require 'tophat/stylesheet'
-require 'tophat/robots'
 
 module TopHat
   autoload :TitleHelper,      'tophat/title'
