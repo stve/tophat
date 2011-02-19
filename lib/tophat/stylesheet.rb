@@ -21,6 +21,10 @@ module TopHat
       ie_conditional(8, operator, &block)
     end
 
+    def ie_9_conditional(operator = nil, &block)
+      ie_conditional(9, operator, &block)
+    end
+
     def ie_conditional(version = nil, operator = nil, &block)
       browser_conditional('IE', version, operator, &block)
     end
@@ -63,19 +67,19 @@ module TopHat
 
     private
 
-    def browser_conditional(browser, version = nil, operator = nil, &block)
-      unless operator.blank?
-        operator = operator.to_s
-        operator = '!' if operator == 'not'
-        operator << " " unless operator == '!'
+      def browser_conditional(browser, version = nil, operator = nil, &block)
+        unless operator.blank?
+          operator = operator.to_s
+          operator = '!' if operator == 'not'
+          operator << " " unless operator == '!'
+        end
+
+        browser_version = version.blank? ? "" : " #{version}"
+
+        output = "<!--[if #{operator}#{browser}#{browser_version}]>\n"
+        output << yield if block_given?
+        output << "\n<![endif]-->"
       end
-
-      browser_version = version.blank? ? "" : " #{version}"
-
-      output = "<!--[if #{operator}#{browser}#{browser_version}]>\n"
-      output << yield if block_given?
-      output << "\n<![endif]-->"
-    end
 
   end
 end

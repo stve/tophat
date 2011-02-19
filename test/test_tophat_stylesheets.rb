@@ -37,6 +37,10 @@ class TopHatStylesheetTestCase < Test::Unit::TestCase
       assert_equal @template.ie_8_conditional {
         @template.stylesheet_link_tag(@stylesheet)
       }, "<!--[if IE 8]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+
+      assert_equal @template.ie_9_conditional {
+        @template.stylesheet_link_tag(@stylesheet)
+      }, "<!--[if IE 9]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
     end
 
     should "render defined IE conditional with greater than operator" do
