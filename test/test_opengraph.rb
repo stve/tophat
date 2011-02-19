@@ -1,5 +1,4 @@
 require 'helper'
-require 'action_dispatch/testing/assertions/tag'
 
 class TopHatOpenGraphTestCase < Test::Unit::TestCase
 
