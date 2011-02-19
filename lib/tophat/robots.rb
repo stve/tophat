@@ -10,9 +10,7 @@ module TopHat
     end
 
     def canonical(path=nil)
-      if path
-        tag(:link, :rel => 'canonical', :href => path)
-      end
+      tag(:link, :rel => 'canonical', :href => path) if path
     end
 
   end
