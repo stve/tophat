@@ -9,13 +9,7 @@ module TopHat
 
       else
         options[:name] = 'description'
-
-        if @tophat_description.blank?
-          options.merge!(:content => options.delete(:default))
-
-        else
-          options.merge!(:content => @tophat_description)
-        end
+        options[:content] = @tophat_description || options.delete(:default)
 
         tag(:meta, options) if options[:content]
       end
