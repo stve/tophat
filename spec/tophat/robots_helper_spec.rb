@@ -3,13 +3,6 @@ require 'spec_helper'
 describe TopHat::RobotsHelper do
 
   before(:all) do
-    public_dir = File.join(File.dirname(__FILE__), 'public')
-    @helpers = ActionController::Base.helpers
-    @helpers.config.perform_caching = false
-    @helpers.config.assets_dir = public_dir
-    @helpers.config.javascripts_dir = "#{public_dir}/javascripts"
-    @helpers.config.stylesheets_dir = "#{public_dir}/stylesheets"
-
     @template = ActionView::Base.new
   end
 
