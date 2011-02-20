@@ -118,6 +118,31 @@ describe TopHat::StylesheetHelper do
     @template.gecko_conditional {
       @template.stylesheet_link_tag(@stylesheet)
     }.should == "<!--[if Gecko]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+
+    @template.ie_mac_conditional {
+      @template.stylesheet_link_tag(@stylesheet)
+    }.should == "<!--[if IEMac]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+
+    @template.konqueror_conditional {
+      @template.stylesheet_link_tag(@stylesheet)
+    }.should == "<!--[if Konq]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+
+    @template.ie_mobile_conditional {
+      @template.stylesheet_link_tag(@stylesheet)
+    }.should == "<!--[if IEmob]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+
+    @template.psp_conditional {
+      @template.stylesheet_link_tag(@stylesheet)
+    }.should == "<!--[if PSP]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+
+    @template.net_front_conditional {
+      @template.stylesheet_link_tag(@stylesheet)
+    }.should == "<!--[if NetF]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+
+    @template.mobile_safari_conditional {
+      @template.stylesheet_link_tag(@stylesheet)
+    }.should == "<!--[if SafMob]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+
   end
 
 end
