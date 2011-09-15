@@ -6,6 +6,14 @@ describe TopHat::OpenGraphHelper do
     @template = ActionView::Base.new
   end
 
+  context 'html_with_opengraph' do
+    it 'should render an html tag with namespace' do
+      @template.html_with_opengraph.should =~ /<html/
+      @template.html_with_opengraph.should =~ /xmlns\:og/
+      @template.html_with_opengraph.should =~ /xmlns\:fb/
+    end
+  end
+
   context "site admins when configured" do
     context "as a string" do
       it "should generate a site admin tag" do
