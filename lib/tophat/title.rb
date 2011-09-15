@@ -2,24 +2,45 @@ module TopHat
   module TitleHelper
 
     def title(title=nil, options={})
-      if title.is_a? String
+      if title.is_a?(String) || title.is_a?(Array)
         save_tophat_title(title, options)
       else
-        display_tophat_title(title)
+        display_tophat_title(title || options)
       end
     end
 
     private
 
       def save_tophat_title(title, options)
-        @tophat_title = title.gsub(/<\/?[^>]*>/, '')
+        @tophat_title = title
         @tophat_title_options = options
         title
       end
 
-      def display_tophat_title(options={})
-        options ||= {}
+      def display_tophat_title(options)
         options = options.merge(@tophat_title_options) unless @tophat_title_options.nil?
+
+        title_segments = []
+        title_segments << options[:site] if options[:site]
+        title_segments << (@tophat_title.blank? ? options[:default] : @tophat_title)
+
+        title_segments.flatten! # flatten out in case the title is an array
+        title_segments.compact! # clean out any nils
+        title_segments.map! { |t| t.downcase! } if options[:lowercase]
+        title_segments.map! { |t| t.upcase! } if options[:uppercase]
+        title_segments.map! { |t| strip_tags(t) }
+
+        reverse = options[:reverse]
+        reverse = false if options[:default] && @tophat_title.blank? && options[:reverse_on_default] == false
+
+        title_segments.reverse! if reverse
+
+        content_tag :title, title_segments.join(delimiter_from(options)).strip
+      end
+      alias t title
+
+      def delimiter_from(options={})
+        return "" if options.empty?
 
         # Prefix (leading space)
         if options[:prefix]
@@ -42,48 +63,7 @@ module TopHat
           suffix = ' '
         end
 
-        # site name
-        site_name = options[:site] || ''
-
-        # Lowercase title?
-        if options[:lowercase] == true
-          @tophat_title.downcase! unless @tophat_title.blank?
-          site_name.downcase! unless site_name.blank?
-        end
-
-        # Default page title
-        if @tophat_title.blank? && options[:default]
-          @tophat_title = options[:default]
-          @tophat_title_defaulted = true
-        end
-
-        # figure out reversing
-        if options[:reverse] == true
-          if @tophat_title_defaulted
-            @tophat_reserve = options[:reverse_on_default] != false
-          else
-            @tophat_reverse = true
-          end
-        else
-          @tophat_reverse = false
-        end
-
-        # Set website/page order
-        if @tophat_title.blank?
-          # If title is blank, return only website name
-          content_tag :title, site_name if options[:site]
-        else
-          display_title = if @tophat_reverse == true
-            # Reverse order => "Page : Website"
-            @tophat_title + prefix + separator + suffix + site_name
-          else
-            # Standard order => "Website : Page"
-            site_name + prefix + separator + suffix + @tophat_title
-          end
-
-          return content_tag(:title, display_title.strip)
-        end
+        prefix + separator + suffix
       end
-      alias t title
   end
 end

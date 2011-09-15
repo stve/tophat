@@ -46,6 +46,11 @@ describe TopHat::TitleHelper do
       @template.title(:site => "Miles Davis", :lowercase => true, :separator => '|').should == "<title>miles davis | kind of blue</title>"
     end
 
+    it "should be uppercase if :uppercase" do
+      save_basic_title
+      @template.title(:site => "Miles Davis", :uppercase => true, :separator => '|').should == "<title>MILES DAVIS | KIND OF BLUE</title>"
+    end
+
     it "should use custom separator if :separator" do
       save_basic_title
       @template.title(:site => "Miles Davis", :separator => "-").should == "<title>Miles Davis - Kind of Blue</title>"
@@ -82,6 +87,11 @@ describe TopHat::TitleHelper do
     it "should allow custom options per title" do
       save_custom_title
       @template.title(:site => "Freddie Freeloader", :separator => '|').should == "<title>Kind of Blue | Freddie Freeloader</title>"
+    end
+
+    it "should accept an array of strings as the title" do
+      @template.title(['My', 'Favorite', 'Things'])
+      @template.title(:site => "Freddie Freeloader", :separator => '|').should == "<title>Freddie Freeloader | My | Favorite | Things</title>"
     end
   end
 
