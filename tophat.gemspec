@@ -22,8 +22,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('simplecov', '~> 0.3')
   s.add_development_dependency('shoulda', '>= 0')
   s.add_development_dependency('rails', '>= 3.0.0')
-  s.add_development_dependency('guard', '~> 0.3.0')
-  s.add_development_dependency('guard-rspec', '~> 0.2.0')
+  s.add_development_dependency('guard-rspec', '~> 0.4')
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
