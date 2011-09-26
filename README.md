@@ -3,13 +3,22 @@ TopHat [![Build Status](https://secure.travis-ci.org/spagalloco/tophat.png)](htt
 
 TopHat is a set of view helpers to keep your layouts and views DRY.
 
+Installation
+------------
+
+Just add it to your Gemfile:
+
+    gem 'tophat'
+
+Note: TopHat is Rails 3.0+ compatible.
+
 Layout Usage
 ------------
 
 You'll want to add the relevant TopHat helpers to your layouts:
 
     <head>
-      <%= title :site => "My website" %>
+      <%= title :site => "My website", :separator => '|' %>
       <%= keywords :default => "Some default, keywords, that can be overridden" %>
       <%= description :default => "A description" %>
     </head>
@@ -33,7 +42,7 @@ Usage Options
 Use these options to customize the title format:
 
 * `:prefix` (text between site name and separator) [default: '']
-* `:separator` (text used to separate website name from page title)
+* `:separator` (text used to separate website name from page title, default is '')
 * `:suffix` (text between separator and page title) [default: ' ']
 * `:lowercase` (when true, the entire title will be lowercase)
 * `:uppercase` (when true, the entire title will be uppercase)
