@@ -1,10 +1,8 @@
-TopHat [![Build Status](https://secure.travis-ci.org/spagalloco/tophat.png)](http://travis-ci.org/spagalloco/tophat)
-====================================================================================================================
+# TopHat
 
 TopHat is a set of view helpers to keep your layouts and views DRY.
 
-Installation
-------------
+## Installation
 
 Just add it to your Gemfile:
 
@@ -12,8 +10,7 @@ Just add it to your Gemfile:
 
 Note: TopHat is Rails 3.0+ compatible.
 
-Layout Usage
-------------
+## Layout Usage
 
 You'll want to add the relevant TopHat helpers to your layouts:
 
@@ -23,8 +20,7 @@ You'll want to add the relevant TopHat helpers to your layouts:
       <%= description :default => "A description" %>
     </head>
 
-View Usage
-----------
+## View Usage
 
 To set the page title, use the title method to each of your views:
 
@@ -36,8 +32,7 @@ When rendered, the page title will be included in your view.
       <title>My website | My page title</title>
     </head>
 
-Usage Options
--------------
+## Usage Options
 
 Use these options to customize the title format:
 
@@ -62,8 +57,7 @@ These options can be set as defaults for your layout, or when setting the title 
 
     <% title "My page title", :lowercase => true, :separator => "~" %>
 
-Meta Tags
----------
+## Meta Tags
 
 TopHat also works with keywords and descriptions.  In your view, simply declare the keywords and description.
 
@@ -101,8 +95,7 @@ There are also convenience methods for a few common meta tags:
     <%= nofollow('googlebot') # outputs: <meta content="nofollow" name="googlebot" />
     <%= canonical('http://mysite.com/somepath/') %> # outputs: <link href="http://mysite.com/somepath/" rel="canonical" />
 
-Browser Conditionals
---------------------
+## Browser Conditionals
 
 TopHat can generate a lot of different browser conditional comments as well:
 
@@ -127,8 +120,7 @@ You can also pass in conditions via an argument to the conditional:
 
 A lot of browsers are supported, check the code for the full listing.
 
-OpenGraph Helpers
------------------
+## OpenGraph Helpers
 
 TopHat can also generate Facebook OpenGraph tags.  In your views, you can assign any number of attributes by passing a block to the opengraph helper.  This will store the attributes for that page.
 
@@ -159,8 +151,17 @@ There's also a helper for the html tag along with the opengraph namespaces:
 
 Note: TopHat does not include a "Like" button helper. TopHat's focus is inside the `<head>` tag.
 
-Note on Patches/Pull Requests
------------------------------
+## <a name="build"></a>Build Status
+[![Build Status](https://secure.travis-ci.org/spagalloco/tophat.png?branch=master)][travis]
+
+[travis]: http://travis-ci.org/spagalloco/tophat
+
+## <a name="dependencies"></a>Dependency Status
+[![Dependency Status](https://gemnasium.com/spagalloco/tophat.png?travis)][gemnasium]
+
+[gemnasium]: https://gemnasium.com/spagalloco/tophat
+
+## Contributing
 
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -170,7 +171,6 @@ Note on Patches/Pull Requests
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-Copyright
----------
+## Copyright
 
-Copyright (c) 2011 Steve Agalloco. See LICENSE for details.
+Copyright (c) 2011 Steve Agalloco. See [LICENSE](https://github.com/spagalloco/tophat/blob/master/LICENSE.md) for details.
