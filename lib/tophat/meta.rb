@@ -5,11 +5,11 @@ module TopHat
     # <meta name="description" content="Description goes here." />
     def description(options={})
       if options.is_a? String
-        @tophat_description = options
+        TopHat.current['description'] = options
 
       else
         options[:name] = 'description'
-        options[:content] = @tophat_description || options.delete(:default)
+        options[:content] = TopHat.current['description'] || options.delete(:default)
 
         tag(:meta, options) if options[:content]
       end
@@ -19,15 +19,15 @@ module TopHat
     # <meta name="keywords" content="Keywords go here." />
     def keywords(options={})
       if options.is_a?(String)
-        @tophat_keywords = options
+        TopHat.current['keywords'] = options
 
       elsif options.is_a?(Array)
-        @tophat_keywords = options.join(', ')
+        TopHat.current['keywords'] = options.join(', ')
 
       else
         options[:name] = 'keywords'
         default_keywords = options.delete(:default) || []
-        display_keywords = @tophat_keywords.blank? ? default_keywords : @tophat_keywords
+        display_keywords = TopHat.current['keywords'].blank? ? default_keywords : TopHat.current['keywords']
 
         # normalize the keywords
         default_keywords = default_keywords.is_a?(String) ? default_keywords.split(',') : default_keywords
@@ -42,3 +42,5 @@ module TopHat
     end
   end
 end
+
+ActionView::Base.send :include, TopHat::MetaHelper

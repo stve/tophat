@@ -12,17 +12,17 @@ module TopHat
     private
 
       def save_tophat_title(title, options)
-        @tophat_title = title
-        @tophat_title_options = options
+        TopHat.current['title'] = title
+        TopHat.current['title_options'] = options
         title
       end
 
       def display_tophat_title(options)
-        options = options.merge(@tophat_title_options) unless @tophat_title_options.nil?
+        options = options.merge(TopHat.current['title_options']) unless TopHat.current['title_options'].nil?
 
         title_segments = []
         title_segments << options[:site] if options[:site]
-        title_segments << (@tophat_title.blank? ? options[:default] : @tophat_title)
+        title_segments << (TopHat.current['title'].blank? ? options[:default] : TopHat.current['title'])
 
         title_segments.flatten! # flatten out in case the title is an array
         title_segments.compact! # clean out any nils
@@ -31,7 +31,7 @@ module TopHat
         title_segments.map! { |t| strip_tags(t) }
 
         reverse = options[:reverse]
-        reverse = false if options[:default] && @tophat_title.blank? && options[:reverse_on_default] == false
+        reverse = false if options[:default] && TopHat.current['title'].blank? && options[:reverse_on_default] == false
 
         title_segments.reverse! if reverse
 
@@ -67,3 +67,5 @@ module TopHat
       end
   end
 end
+
+ActionView::Base.send :include, TopHat::TitleHelper

@@ -9,6 +9,13 @@ require File.expand_path('../../lib/tophat', __FILE__)
 require 'rspec'
 require 'rails/all'
 
+
+RSpec.configure do |config|
+  config.after(:each) do
+    TopHat.reset
+  end
+end
+
 require 'action_controller/vendor/html-scanner'
 
 module HTML

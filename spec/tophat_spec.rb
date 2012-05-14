@@ -70,4 +70,16 @@ describe TopHat do
     end
   end
 
+  describe '.current' do
+    it 'returns a hash' do
+      TopHat.current.should be_kind_of(Hash)
+    end
+
+    it 'allows the hash to be modified' do
+      TopHat.current[:title] = 'foo'
+
+      TopHat.current[:title].should eq('foo')
+    end
+  end
+
 end

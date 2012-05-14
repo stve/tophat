@@ -1,15 +1,26 @@
 require 'action_view'
 
 module TopHat
-  autoload :TitleHelper,      'tophat/title'
-  autoload :MetaHelper,       'tophat/meta'
-  autoload :StylesheetHelper, 'tophat/stylesheet'
-  autoload :RobotsHelper,     'tophat/robots'
-  autoload :OpenGraphHelper,  'tophat/opengraph'
+  extend self
+
+  def current
+    return Thread.current[:tophat] if Thread.current[:tophat]
+
+    reset
+  end
+
+  def reset
+    Thread.current[:tophat] = {}
+  end
+
 end
 
-ActionView::Base.send :include, TopHat::TitleHelper
-ActionView::Base.send :include, TopHat::MetaHelper
-ActionView::Base.send :include, TopHat::StylesheetHelper
-ActionView::Base.send :include, TopHat::RobotsHelper
-ActionView::Base.send :include, TopHat::OpenGraphHelper
+require 'tophat/title'
+require 'tophat/meta'
+require 'tophat/stylesheet'
+require 'tophat/robots'
+require 'tophat/opengraph'
+
+
+
+
