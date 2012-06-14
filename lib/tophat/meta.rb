@@ -4,6 +4,7 @@ module TopHat
     # page descriptions
     # <meta name="description" content="Description goes here." />
     def description(options={})
+      options ||= {}
       if options.is_a? String
         TopHat.current['description'] = options
 
@@ -18,6 +19,7 @@ module TopHat
     # keywords
     # <meta name="keywords" content="Keywords go here." />
     def keywords(options={})
+      options ||= {}
       if options.is_a?(String)
         TopHat.current['keywords'] = options
 

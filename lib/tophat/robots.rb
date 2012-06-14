@@ -1,11 +1,15 @@
 module TopHat
   module RobotsHelper
 
-    def noindex(descriptor='robots')
+    DEFAULT_DESCRIPTOR = 'robots'
+
+    def noindex(descriptor=DEFAULT_DESCRIPTOR)
+      descriptor ||= DEFAULT_DESCRIPTOR
       tag(:meta, :name => descriptor, :content => 'noindex')
     end
 
-    def nofollow(descriptor='robots')
+    def nofollow(descriptor=DEFAULT_DESCRIPTOR)
+      descriptor ||= DEFAULT_DESCRIPTOR
       tag(:meta, :name => descriptor, :content => 'nofollow')
     end
 

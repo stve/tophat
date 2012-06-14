@@ -14,6 +14,10 @@ describe TopHat::RobotsHelper do
     it "should use a descriptor if one is provided" do
       @template.nofollow('googlebot').should == "<meta content=\"nofollow\" name=\"googlebot\" />"
     end
+
+    it "doesn't blow up on nil" do
+      @template.nofollow(nil).should == "<meta content=\"nofollow\" name=\"robots\" />"
+    end
   end
 
   describe ".noindex" do
@@ -24,6 +28,10 @@ describe TopHat::RobotsHelper do
     it "should use a descriptor if one is provided" do
       @template.noindex('googlebot').should == "<meta content=\"noindex\" name=\"googlebot\" />"
     end
+
+    it "doesn't blow up on nil" do
+      @template.noindex(nil).should == "<meta content=\"noindex\" name=\"robots\" />"
+    end
   end
 
   describe ".canonical" do
@@ -33,6 +41,10 @@ describe TopHat::RobotsHelper do
 
     it "should render a tag when passed a path" do
       @template.canonical('http://mysite.com/somepath/').should == "<link href=\"http://mysite.com/somepath/\" rel=\"canonical\" />"
+    end
+
+    it "doesn't blow up on nil" do
+      @template.canonical(nil).should be_nil
     end
   end
 
