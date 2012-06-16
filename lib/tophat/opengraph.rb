@@ -52,10 +52,30 @@ module TopHat
 
     end
 
-    def html_with_opengraph
-      '<html xmlns="http://www.w3.org/1999/xhtml"
-            xmlns:og="http://ogp.me/ns#"
-            xmlns:fb="https://www.facebook.com/2008/fbml">'
+    HTML4_XMLNS = [
+      'http://www.w3.org/1999/xhtml',
+      { :prefix => 'og', :url => 'http://ogp.me/ns#' },
+      { :prefix => 'fb', :url => 'https://www.facebook.com/2008/fbml' }
+    ]
+
+    HTML5_XMLNS = [
+      { :prefix => 'og', :url => 'http://opengraphprotocol.org/schema/' },
+      { :prefix => 'fb', :url => 'http://developers.facebook.com/schema/' }
+    ]
+
+    def html_with_opengraph(style='html4')
+      Kernel.warn("html_with_opengraph has been deprecated, use opengraph_html instead.")
+      opengraph_html(style)
+    end
+
+    def opengraph_html(style='html4')
+      if style == 'html4'
+        html_tag(:xmlns => HTML4_XMLNS)
+      elsif style == 'html5'
+        html_tag(:version => 'HTML+RDFa 1.0', :xmlns => HTML5_XMLNS)
+      else
+        html_tag
+      end
     end
 
     def opengraph(options=nil, &block)

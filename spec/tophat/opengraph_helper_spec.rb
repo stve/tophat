@@ -6,11 +6,33 @@ describe TopHat::OpenGraphHelper do
     @template = ActionView::Base.new
   end
 
-  context 'html_with_opengraph' do
-    it 'renders an html tag with namespace' do
-      @template.html_with_opengraph.should =~ /<html/
-      @template.html_with_opengraph.should =~ /xmlns\:og/
-      @template.html_with_opengraph.should =~ /xmlns\:fb/
+  describe 'opengraph_html' do
+    context 'default style' do
+      it 'renders an html tag with namespace' do
+        output = @template.opengraph_html
+        output.should =~ /<html/
+        output.should =~ /xmlns\:og/
+        output.should =~ /xmlns\:fb/
+      end
+    end
+
+    context 'html5 style' do
+      it 'renders an html tag with namespace' do
+        output = @template.opengraph_html('html5')
+        output.should =~ /<html/
+        output.should =~ /xmlns\:og/
+        output.should =~ /xmlns\:fb/
+      end
+    end
+
+    context 'unknown style' do
+      it 'returns an empty html tag' do
+        @template.opengraph_html('funny').should eq('<html>')
+      end
+    end
+
+    it 'it supports deprecated html_with_opengraph' do
+      @template.opengraph_html.should eq(@template.html_with_opengraph)
     end
   end
 
