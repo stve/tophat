@@ -15,6 +15,7 @@ module TopHat
 
 end
 
+require 'tophat/html'
 require 'tophat/title'
 require 'tophat/meta'
 require 'tophat/stylesheet'
