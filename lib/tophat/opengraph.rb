@@ -5,49 +5,49 @@ module TopHat
       include ActionView::Helpers
 
       def initialize(options={})
-        TopHat.current['app_id'] = options.delete(:app_id) if options && options.has_key?(:app_id)
-        TopHat.current['admins'] = options.delete(:admins) if options && options.has_key?(:admins)
-        TopHat.current['graph_data'] = {}
+        @app_id = options.delete(:app_id) if options && options.has_key?(:app_id)
+        @admins = options.delete(:admins) if options && options.has_key?(:admins)
+        @graph_data = {}
       end
 
       def merge(options={})
-        TopHat.current['app_id'] = options.delete(:app_id) if options && options.has_key?(:app_id)
-        TopHat.current['admins'] = options.delete(:admins) if options && options.has_key?(:admins)
+        @app_id = options.delete(:app_id) if options && options.has_key?(:app_id)
+        @admins = options.delete(:admins) if options && options.has_key?(:admins)
       end
 
       def app_id
-        output = TopHat.current['app_id'] ? tag(:meta, :property => 'fb:app_id', :content => TopHat.current['app_id']) : ""
+        output = @app_id ? tag(:meta, :property => 'fb:app_id', :content => @app_id) : ""
         output << '\n' unless output.blank?
         output
       end
 
       def admins
-        output = TopHat.current['admins'] ? tag(:meta, :property => 'fb:admins', :content => [*TopHat.current['admins']].join(',')) : ""
+        output = @admins ? tag(:meta, :property => 'fb:admins', :content => [*@admins].join(',')) : ""
         output << '\n' unless output.blank?
         output
       end
 
       def render_graph_data
         output = ""
-        TopHat.current['graph_data'].each_pair do |key, value|
+        @graph_data.each do |key, value|
           output << tag(:meta, :property => "og:#{key}", :content => value)
-          output << '\n' if TopHat.current['graph_data'].size > 1
+          output << '\n' if @graph_data.size > 1
         end
         output
       end
 
       def type(t)
-        TopHat.current['graph_data'] ||= {}
-        TopHat.current['graph_data'][:type] = t
+        @graph_data ||= {}
+        @graph_data[:type] = t
       end
 
       def has_graph_data?
-        TopHat.current['graph_data']
+        !!@graph_data
       end
 
       def method_missing(method, *args, &block) #:nodoc
-        TopHat.current['graph_data'] ||= {}
-        TopHat.current['graph_data'][method] = args.shift
+        @graph_data ||= {}
+        @graph_data[method] = args.shift
       end
 
     end
