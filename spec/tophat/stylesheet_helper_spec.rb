@@ -16,7 +16,7 @@ describe TopHat::StylesheetHelper do
     @stylesheet = "ie.css"
   end
 
-  it "should define IE conditionals" do
+  it "defines IE conditionals" do
     @template.ie_5_conditional {
       @template.stylesheet_link_tag(@stylesheet)
     }.should == "<!--[if IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
@@ -42,7 +42,7 @@ describe TopHat::StylesheetHelper do
     }.should == "<!--[if IE 9]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
   end
 
-  it "should render defined IE conditional with greater than operator" do
+  it "renders defined IE conditional with greater than operator" do
     @template.ie_5_conditional(:gt) {
       @template.stylesheet_link_tag(@stylesheet)
     }.should == "<!--[if gt IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
@@ -52,7 +52,7 @@ describe TopHat::StylesheetHelper do
     }.should == "<!--[if gt IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
   end
 
-  it "should render defined IE conditional with greater than or equal to operator" do
+  it "renders defined IE conditional with greater than or equal to operator" do
     @template.ie_5_conditional(:gte) {
       @template.stylesheet_link_tag(@stylesheet)
     }.should == "<!--[if gte IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
@@ -62,7 +62,7 @@ describe TopHat::StylesheetHelper do
     }.should == "<!--[if gte IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
   end
 
-  it "should render defined IE conditional with ! operator" do
+  it "renders defined IE conditional with ! operator" do
     @template.ie_5_conditional(:not) {
       @template.stylesheet_link_tag(@stylesheet)
     }.should == "<!--[if !IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
@@ -72,7 +72,7 @@ describe TopHat::StylesheetHelper do
     }.should == "<!--[if !IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
   end
 
-  it "should render defined IE conditional with less than operator" do
+  it "renders defined IE conditional with less than operator" do
     @template.ie_5_conditional(:lt) {
       @template.stylesheet_link_tag(@stylesheet)
     }.should == "<!--[if lt IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
@@ -82,7 +82,7 @@ describe TopHat::StylesheetHelper do
     }.should == "<!--[if lt IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
   end
 
-  it "should render defined IE conditional with less than or equal to operator" do
+  it "renders defined IE conditional with less than or equal to operator" do
     @template.ie_5_conditional(:lte) {
       @template.stylesheet_link_tag(@stylesheet)
     }.should == "<!--[if lte IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
@@ -92,7 +92,7 @@ describe TopHat::StylesheetHelper do
     }.should == "<!--[if lte IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
   end
 
-  it "should render defined IE conditional with equal to operator" do
+  it "renders defined IE conditional with equal to operator" do
     @template.ie_5_conditional(:eq) {
       @template.stylesheet_link_tag(@stylesheet)
     }.should == "<!--[if eq IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
@@ -102,7 +102,7 @@ describe TopHat::StylesheetHelper do
     }.should == "<!--[if eq IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
   end
 
-  it "should render defined conditionals for other browsers" do
+  it "renders defined conditionals for other browsers" do
     @template.opera_conditional {
       @template.stylesheet_link_tag(@stylesheet)
     }.should == "<!--[if Opera]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
