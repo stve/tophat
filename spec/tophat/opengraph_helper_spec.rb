@@ -81,7 +81,7 @@ describe TopHat::OpenGraphHelper do
   end
 
   context "combined usage" do
-    it "generates all tags" do
+    it "generates all tags when app_id and admins passed as part of definition" do
       @template.opengraph(:app_id => 'MyApp', :admins => [123, 1234]) {
         title 'Rain Man'
         type 'movie'
@@ -89,7 +89,7 @@ describe TopHat::OpenGraphHelper do
       @template.opengraph.should be_dom_equivalent_to('<meta content="MyApp" property="fb:app_id" />\n<meta content="123,1234" property="fb:admins" />\n<meta content="movie" property="og:type" />\n<meta content="Rain Man" property="og:title" />\n')
     end
 
-    it "generates all tags - alternative usage" do
+    it "generates all tags when app_id and admins passed as part of rendering" do
       @template.opengraph {
         title 'Rain Man'
         type 'movie'
