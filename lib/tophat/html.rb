@@ -2,24 +2,17 @@ module TopHat
   module HtmlHelper
 
     def html_tag(options={})
-      output = '<html'
-      if options[:version]
-        output << " version=\"#{options[:version]}\""
-      end
-      if options[:xmlns]
-        if options[:xmlns].kind_of?(String)
-          output << " xmlns=\"#{options[:xmlns]}\""
-        elsif options[:xmlns].kind_of?(Array)
-          output = options[:xmlns].inject(output) do |html, xmlns|
-            if xmlns.kind_of?(Hash)
-              html << " xmlns:#{xmlns[:prefix]}=\"#{xmlns[:url]}\""
-            else
-              html << " xmlns=\"#{xmlns}\""
-            end
+      if options[:xmlns] && options[:xmlns].kind_of?(Array)
+        options.delete(:xmlns).each do |xmlns|
+          if xmlns.kind_of?(Hash)
+            options["xmlns:#{xmlns[:prefix]}"] = xmlns[:url]
+          else
+            options['xmlns'] = xmlns
           end
         end
       end
-      output << '>'
+
+      tag(:html, options, true)
     end
 
   end

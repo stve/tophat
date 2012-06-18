@@ -20,11 +20,6 @@ describe TopHat::HtmlHelper do
       output.should eq('<html xmlns="http://someurl.com">')
     end
 
-    it 'accepts and array of xmlns in an options hash' do
-      output = @template.html_tag(:xmlns => ['http://someurl.com', 'http://otherurl.com'])
-      output.should eq('<html xmlns="http://someurl.com" xmlns="http://otherurl.com">')
-    end
-
     it 'accepts an array of xmlns including prefixes' do
       xmlns = { :prefix => 'fb', :url => 'http://developers.facebook.com/schema/' }
       output = @template.html_tag(:xmlns => [xmlns])
