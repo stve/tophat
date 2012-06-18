@@ -61,19 +61,19 @@ describe TopHat::OpenGraphHelper do
 
   context "additional open graph properties" do
     it "generates opengraph meta tags" do
-      @template.opengraph { |graph| graph.title 'The Great Gatsby' }
+      @template.opengraph { title 'The Great Gatsby' }
       @template.opengraph.should be_dom_equivalent_to('<meta content="The Great Gatsby" property="og:title" />')
     end
 
     it "allows use of the tag 'type'" do
-      @template.opengraph { |graph| graph.type 'sports_team' }
+      @template.opengraph { type 'sports_team' }
       @template.opengraph.should be_dom_equivalent_to('<meta content="sports_team" property="og:type" />')
     end
 
     it "supports multiple tags" do
-      @template.opengraph { |graph|
-        graph.title 'Austin Powers: International Man of Mystery'
-        graph.type 'movie'
+      @template.opengraph {
+        title 'Austin Powers: International Man of Mystery'
+        type 'movie'
       }
       @template.opengraph.should be_dom_equivalent_to('<meta content="movie" property="og:type" />\n<meta content="Austin Powers: International Man of Mystery" property="og:title" />\n')
     end
@@ -82,19 +82,30 @@ describe TopHat::OpenGraphHelper do
 
   context "combined usage" do
     it "generates all tags" do
-      @template.opengraph(:app_id => 'MyApp', :admins => [123, 1234]) { |graph|
-        graph.title 'Rain Man'
-        graph.type 'movie'
+      @template.opengraph(:app_id => 'MyApp', :admins => [123, 1234]) {
+        title 'Rain Man'
+        type 'movie'
       }
       @template.opengraph.should be_dom_equivalent_to('<meta content="MyApp" property="fb:app_id" />\n<meta content="123,1234" property="fb:admins" />\n<meta content="movie" property="og:type" />\n<meta content="Rain Man" property="og:title" />\n')
     end
 
     it "generates all tags - alternative usage" do
+      @template.opengraph {
+        title 'Rain Man'
+        type 'movie'
+      }
+      @template.opengraph(:app_id => 'MyApp', :admins => [123, 1234]).should be_dom_equivalent_to('<meta content="MyApp" property="fb:app_id" />\n<meta content="123,1234" property="fb:admins" />\n<meta content="movie" property="og:type" />\n<meta content="Rain Man" property="og:title" />\n')
+    end
+  end
+
+  context 'deprecated support' do
+    it 'generates multiple tags' do
       @template.opengraph { |graph|
         graph.title 'Rain Man'
         graph.type 'movie'
       }
-      @template.opengraph(:app_id => 'MyApp', :admins => [123, 1234]).should be_dom_equivalent_to('<meta content="MyApp" property="fb:app_id" />\n<meta content="123,1234" property="fb:admins" />\n<meta content="movie" property="og:type" />\n<meta content="Rain Man" property="og:title" />\n')
+
+      @template.opengraph.should be_dom_equivalent_to('<meta content="movie" property="og:type" />\n<meta content="Rain Man" property="og:title" />\n')
     end
   end
 

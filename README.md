@@ -124,9 +124,9 @@ A lot of browsers are supported, check the code for the full listing.
 
 TopHat can also generate Facebook OpenGraph tags.  In your views, you can assign any number of attributes by passing a block to the opengraph helper.  This will store the attributes for that page.
 
-    opengraph do |graph|
-      graph.title 'Rain Man'
-      graph.type 'Movie'
+    opengraph do
+      title 'Rain Man'
+      type 'Movie'
     end
 
 To embed OpenGraph tags on your page, you'll need to reference opengraph in your layout.
@@ -146,9 +146,16 @@ When used in combination, TopHat will render:
 
 There's also a helper for the html tag along with the opengraph namespaces:
 
-    html_with_opengraph => <html xmlns:fb...>
+    opengraph_html => <html xmlns:fb...>
 
 Note: TopHat does not include a "Like" button helper. TopHat's focus is inside the `<head>` tag.
+
+TopHat previously supported a different syntax for defining the opengraph which has been deprecated:
+
+    opengraph do |graph|
+      graph.title 'Rain Man'
+      graph.type 'Movie'
+    end
 
 ## Twitter Card Helpers
 

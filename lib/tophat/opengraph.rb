@@ -83,8 +83,16 @@ module TopHat
         TopHat.current['open_graph_defaults'] = options
       end
       if block_given?
-        TopHat.current['open_graph_generator'] = OpenGraphGenerator.new(TopHat.current['open_graph_defaults'])
-        yield(TopHat.current['open_graph_generator'])
+        if block.arity == 1
+          Kernel.warn("passing the graph object into the opengraph method has been deprecated, see README for details.")
+
+          TopHat.current['open_graph_generator'] = OpenGraphGenerator.new(TopHat.current['open_graph_defaults'])
+          yield(TopHat.current['open_graph_generator'])
+        else
+          opengraph_generator = OpenGraphGenerator.new(TopHat.current['open_graph_defaults'])
+          opengraph_generator.instance_eval(&block)
+          TopHat.current['open_graph_generator'] = opengraph_generator
+        end
       else
         TopHat.current['open_graph_generator'] ||= OpenGraphGenerator.new
         TopHat.current['open_graph_generator'].merge(TopHat.current['open_graph_defaults'])
