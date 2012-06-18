@@ -68,6 +68,14 @@ describe TopHat do
     it "should respond to the 'canonical' helper" do
       @template.respond_to?(:canonical).should be_true
     end
+
+    it "should respond to the 'twitter_card' helper" do
+      @template.respond_to?(:twitter_card).should be_true
+    end
+
+    it "should respond to the 'html_tag' helper" do
+      @template.respond_to?(:html_tag).should be_true
+    end
   end
 
   describe '.current' do
