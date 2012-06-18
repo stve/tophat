@@ -148,8 +148,38 @@ There's also a helper for the html tag along with the opengraph namespaces:
 
     html_with_opengraph => <html xmlns:fb...>
 
-
 Note: TopHat does not include a "Like" button helper. TopHat's focus is inside the `<head>` tag.
+
+## Twitter Card Helpers
+
+TopHat has support for [Twitter Cards](https://dev.twitter.com/docs/cards).
+
+    twitter_card('summary') do
+      url 'http://mysite.com/page'
+      title 'this is my page title'
+      description 'some interesting info about my page'
+      image 'http://mysite.com/animage.jpg'
+    end
+
+You can nest attributes inside a twitter card:
+
+    twitter_card('player') do
+      player 'https://example.com/embed/a' do
+        height '251'
+        width '435'
+      end
+    end
+
+Which will render a twitter card like so:
+
+    <meta name="twitter:card" value="player">
+    <meta name="twitter:player" value="https://example.com/embed/a">
+    <meta name="twitter:player:width" value="435">
+    <meta name="twitter:player:height" value="251">
+    
+To render the twitter card in your layout, simply call the twitter_card helper with no arguments:
+
+    <%= twitter_card %>
 
 ## <a name="build"></a>Build Status
 [![Build Status](https://secure.travis-ci.org/spagalloco/tophat.png?branch=master)][travis]
@@ -173,4 +203,4 @@ Note: TopHat does not include a "Like" button helper. TopHat's focus is inside t
 
 ## Copyright
 
-Copyright (c) 2011 Steve Agalloco. See [LICENSE](https://github.com/spagalloco/tophat/blob/master/LICENSE.md) for details.
+Copyright (c) 2012 Steve Agalloco. See [LICENSE](https://github.com/spagalloco/tophat/blob/master/LICENSE.md) for details.

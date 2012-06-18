@@ -21,7 +21,4 @@ require 'tophat/meta'
 require 'tophat/stylesheet'
 require 'tophat/robots'
 require 'tophat/opengraph'
-
-
-
-
+require 'tophat/twitter_card'
