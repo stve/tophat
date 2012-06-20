@@ -1,6 +1,19 @@
 module TopHat
   module MetaHelper
 
+    # Meta Tag helper
+    def meta_tag(options, open=false, escape=true)
+      tag(:meta, options, open, escape)
+    end
+
+    def charset(charset, options={})
+      meta_tag(options.merge(:charset => charset), true)
+    end
+
+    def viewport(viewport, options={})
+      meta_tag(options.merge(:name => 'viewport', :content => viewport), true)
+    end
+
     # page descriptions
     # <meta name="description" content="Description goes here." />
     def description(options={})
@@ -12,7 +25,7 @@ module TopHat
         options[:name] = 'description'
         options[:content] = TopHat.current['description'] || options.delete(:default)
 
-        tag(:meta, options) if options[:content]
+        meta_tag(options) if options[:content]
       end
     end
 
@@ -39,7 +52,7 @@ module TopHat
         display_keywords += default_keywords if options.delete(:merge_default) == true
 
         options.merge!(:content => display_keywords.uniq.join(', ').squeeze(' '))
-        tag(:meta, options) if display_keywords.any?
+        meta_tag(options) if display_keywords.any?
       end
     end
   end

@@ -6,6 +6,24 @@ describe TopHat::MetaHelper do
     @template = ActionView::Base.new
   end
 
+  describe "charset" do
+    it 'renders a meta tag with a charset' do
+      @template.charset('utf-8').should eq('<meta charset="utf-8">')
+    end
+  end
+
+  describe "viewport" do
+    it 'renders a meta tag with a viewport' do
+      @template.viewport('width=device-width').should eq('<meta content="width=device-width" name="viewport">')
+    end
+  end
+
+  describe "meta_tag" do
+    it 'renders meta_tags' do
+      @template.meta_tag(:charset => 'utf-8').should eq('<meta charset="utf-8" />')
+    end
+  end
+
   describe "keywords" do
     context "defined as an array" do
       before do
