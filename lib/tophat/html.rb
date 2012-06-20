@@ -12,6 +12,24 @@ module TopHat
         end
       end
 
+      if options[:prefix]
+        if options[:prefix].kind_of?(Hash)
+          prefix_options = options.delete(:prefix)
+          options['prefix'] = "#{prefix_options[:prefix]}: #{prefix_options[:url]}"
+        elsif options[:prefix].kind_of?(Array)
+          prefixes = []
+          options.delete(:prefix).each do |prefix|
+            if prefix.kind_of?(Hash)
+              prefixes << "#{prefix[:prefix]}: #{prefix[:url]}"
+            else
+              prefixes << prefix
+            end
+          end
+
+          options['prefix'] = prefixes.join(' ')
+        end
+      end
+
       tag(:html, options, true)
     end
 

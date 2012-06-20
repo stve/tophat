@@ -15,15 +15,38 @@ describe TopHat::HtmlHelper do
       output.should eq('<html version="123">')
     end
 
-    it 'accepts xmlns in an options hash' do
-      output = @template.html_tag(:xmlns => 'http://someurl.com')
-      output.should eq('<html xmlns="http://someurl.com">')
+    context 'xmlns' do
+      it 'accepts xmlns passed as strings' do
+        output = @template.html_tag(:xmlns => 'http://someurl.com')
+        output.should eq('<html xmlns="http://someurl.com">')
+      end
+
+      it 'accepts xmlns passed as an array of hashes' do
+        xmlns = { :prefix => 'fb', :url => 'http://developers.facebook.com/schema/' }
+        output = @template.html_tag(:xmlns => [xmlns])
+        output.should eq('<html xmlns:fb="http://developers.facebook.com/schema/">')
+      end
     end
 
-    it 'accepts an array of xmlns including prefixes' do
-      xmlns = { :prefix => 'fb', :url => 'http://developers.facebook.com/schema/' }
-      output = @template.html_tag(:xmlns => [xmlns])
-      output.should eq('<html xmlns:fb="http://developers.facebook.com/schema/">')
+    context 'prefixes' do
+      it 'accepts prefixes passed as strings' do
+        output = @template.html_tag(:prefix => 'ohai')
+        output.should eq('<html prefix="ohai">')
+      end
+
+      it 'accepts prefixes passed as a hash' do
+        output = @template.html_tag(:prefix => { :prefix => 'og', :url => 'http://ogp.me/ns#' })
+        output.should eq('<html prefix="og: http://ogp.me/ns#">')
+      end
+
+      it 'accepts prefixes passed as an array of hashes' do
+        prefixes = [
+          { :prefix => 'og', :url => 'http://ogp.me/ns#' },
+          { :prefix => 'fb', :url => 'http://ogp.me/ns/fb#' }
+        ]
+        output = @template.html_tag(:prefix => prefixes)
+        output.should eq('<html prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">')
+      end
     end
 
   end
