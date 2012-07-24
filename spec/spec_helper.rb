@@ -11,6 +11,10 @@ require 'rails/all'
 
 
 RSpec.configure do |config|
+  config.before(:suite) do
+    TopHat.setup
+  end
+
   config.after(:each) do
     TopHat.reset
   end

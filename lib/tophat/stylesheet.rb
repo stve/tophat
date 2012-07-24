@@ -83,5 +83,3 @@ module TopHat
 
   end
 end
-
-ActionView::Base.send :include, TopHat::StylesheetHelper

@@ -67,5 +67,3 @@ module TopHat
       end
   end
 end
-
-ActionView::Base.send :include, TopHat::TitleHelper
