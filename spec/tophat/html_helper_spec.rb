@@ -47,6 +47,11 @@ describe TopHat::HtmlHelper do
         output = @template.html_tag(:prefix => prefixes)
         output.should eq('<html prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">')
       end
+
+      it 'accepts prefixes passes and an array of strings' do
+        output = @template.html_tag(:prefix => ['og: http://ogp.me/ns#', 'fb: http://ogp.me/ns/fb#'])
+        output.should eq('<html prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">')
+      end
     end
 
   end
