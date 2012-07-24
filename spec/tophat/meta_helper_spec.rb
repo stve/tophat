@@ -85,6 +85,11 @@ describe TopHat::MetaHelper do
     it "returns nil when no default is configured and no description is defined" do
       @template.description.should be_nil
     end
+
+    it 'overrides the default' do
+      @template.description('This is a custom description')
+      @template.description(:default => 'This is a default description.').should eq('<meta content="This is a custom description" name="description" />')
+    end
   end
 
 end
