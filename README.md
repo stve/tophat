@@ -1,6 +1,6 @@
 # TopHat
 
-TopHat is a set of view helpers to keep your layouts and views DRY.
+TopHat is a set of view helpers to keep your layouts and views DRY.  Easily manage keywords, descriptions, Open Graph and Twitter Cards to your Rails views.
 
 ## Installation
 
