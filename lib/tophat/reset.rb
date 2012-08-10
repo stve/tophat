@@ -6,7 +6,6 @@ module TopHat
     end
 
     def reset_tophat
-      puts 'i am getting reset'
       TopHat.reset
     end
 
