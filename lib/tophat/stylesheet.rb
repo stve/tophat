@@ -76,9 +76,11 @@ module TopHat
 
         browser_version = version.blank? ? "" : " #{version}"
 
-        output = "<!--[if #{operator}#{browser}#{browser_version}]>\n"
+        output = ActiveSupport::SafeBuffer.new("<!--[if #{operator}#{browser}#{browser_version}]>")
+        output << "\n".html_safe
         output << yield if block_given?
-        output << "\n<![endif]-->"
+        output << "\n".html_safe
+        output << "<![endif]-->".html_safe
       end
 
   end

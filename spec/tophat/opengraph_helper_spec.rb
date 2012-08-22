@@ -40,14 +40,14 @@ describe TopHat::OpenGraphHelper do
     context "as a string" do
       it "generates a site admin tag" do
         @template.opengraph(:admins => '123,124')
-        @template.opengraph.should be_dom_equivalent_to('<meta content="123,124" property="fb:admins" />\n')
+        @template.opengraph.should include('<meta content="123,124" property="fb:admins" />')
       end
     end
 
     context "as an array" do
       it "generates a site admin tag" do
         @template.opengraph(:admins => [123, 124])
-        @template.opengraph.should be_dom_equivalent_to('<meta content="123,124" property="fb:admins" />\n')
+        @template.opengraph.should include('<meta content="123,124" property="fb:admins" />')
       end
     end
   end
@@ -55,19 +55,19 @@ describe TopHat::OpenGraphHelper do
   context "app_id when configured" do
     it "generates an app_id meta tag" do
       @template.opengraph(:app_id => 'MyApp')
-      @template.opengraph.should be_dom_equivalent_to('<meta content="MyApp" property="fb:app_id" />\n')
+      @template.opengraph.should include('<meta content="MyApp" property="fb:app_id" />')
     end
   end
 
   context "additional open graph properties" do
     it "generates opengraph meta tags" do
       @template.opengraph { title 'The Great Gatsby' }
-      @template.opengraph.should be_dom_equivalent_to('<meta content="The Great Gatsby" property="og:title" />')
+      @template.opengraph.should include('<meta content="The Great Gatsby" property="og:title" />')
     end
 
     it "allows use of the tag 'type'" do
       @template.opengraph { type 'sports_team' }
-      @template.opengraph.should be_dom_equivalent_to('<meta content="sports_team" property="og:type" />')
+      @template.opengraph.should include('<meta content="sports_team" property="og:type" />')
     end
 
     it "supports multiple tags" do
@@ -75,7 +75,10 @@ describe TopHat::OpenGraphHelper do
         title 'Austin Powers: International Man of Mystery'
         type 'movie'
       }
-      @template.opengraph.should be_dom_equivalent_to('<meta content="movie" property="og:type" />\n<meta content="Austin Powers: International Man of Mystery" property="og:title" />\n')
+      output = @template.opengraph
+
+      output.should include('<meta content="movie" property="og:type" />')
+      output.should include('<meta content="Austin Powers: International Man of Mystery" property="og:title" />')
     end
 
   end
@@ -86,7 +89,12 @@ describe TopHat::OpenGraphHelper do
         title 'Rain Man'
         type 'movie'
       }
-      @template.opengraph.should be_dom_equivalent_to('<meta content="MyApp" property="fb:app_id" />\n<meta content="123,1234" property="fb:admins" />\n<meta content="movie" property="og:type" />\n<meta content="Rain Man" property="og:title" />\n')
+      output = @template.opengraph
+
+      output.should include('<meta content="MyApp" property="fb:app_id" />')
+      output.should include('<meta content="123,1234" property="fb:admins" />')
+      output.should include('<meta content="movie" property="og:type" />')
+      output.should include('<meta content="Rain Man" property="og:title" />')
     end
 
     it "generates all tags when app_id and admins passed as part of rendering" do
@@ -94,7 +102,12 @@ describe TopHat::OpenGraphHelper do
         title 'Rain Man'
         type 'movie'
       }
-      @template.opengraph(:app_id => 'MyApp', :admins => [123, 1234]).should be_dom_equivalent_to('<meta content="MyApp" property="fb:app_id" />\n<meta content="123,1234" property="fb:admins" />\n<meta content="movie" property="og:type" />\n<meta content="Rain Man" property="og:title" />\n')
+      output = @template.opengraph(:app_id => 'MyApp', :admins => [123, 1234])
+
+      output.should include('<meta content="MyApp" property="fb:app_id" />')
+      output.should include('<meta content="123,1234" property="fb:admins" />')
+      output.should include('<meta content="movie" property="og:type" />')
+      output.should include('<meta content="Rain Man" property="og:title" />')
     end
   end
 
@@ -104,8 +117,10 @@ describe TopHat::OpenGraphHelper do
         graph.title 'Rain Man'
         graph.type 'movie'
       }
+      output = @template.opengraph
 
-      @template.opengraph.should be_dom_equivalent_to('<meta content="movie" property="og:type" />\n<meta content="Rain Man" property="og:title" />\n')
+      output.should include('<meta content="movie" property="og:type" />')
+      output.should include('<meta content="Rain Man" property="og:title" />')
     end
   end
 

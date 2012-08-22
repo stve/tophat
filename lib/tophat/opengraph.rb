@@ -16,22 +16,18 @@ module TopHat
       end
 
       def app_id
-        output = @app_id ? tag(:meta, :property => 'fb:app_id', :content => @app_id) : ""
-        output << '\n' unless output.blank?
-        output
+        tag(:meta, :property => 'fb:app_id', :content => @app_id) + "\n".html_safe if @app_id
       end
 
       def admins
-        output = @admins ? tag(:meta, :property => 'fb:admins', :content => [*@admins].join(',')) : ""
-        output << '\n' unless output.blank?
-        output
+        tag(:meta, :property => 'fb:admins', :content => [*@admins].join(',')) + "\n".html_safe if @admins
       end
 
       def render_graph_data
-        output = ""
+        output = ActiveSupport::SafeBuffer.new
         @graph_data.each do |key, value|
           output << tag(:meta, :property => "og:#{key}", :content => value)
-          output << '\n' if @graph_data.size > 1
+          output << "\n".html_safe if @graph_data.size > 1
         end
         output
       end
@@ -96,7 +92,7 @@ module TopHat
       else
         TopHat.current['open_graph_generator'] ||= OpenGraphGenerator.new
         TopHat.current['open_graph_generator'].merge(TopHat.current['open_graph_defaults'])
-        output = ""
+        output = ActiveSupport::SafeBuffer.new
         output << TopHat.current['open_graph_generator'].app_id
         output << TopHat.current['open_graph_generator'].admins
         output << TopHat.current['open_graph_generator'].render_graph_data if TopHat.current['open_graph_generator'].has_graph_data?

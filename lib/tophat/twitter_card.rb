@@ -12,13 +12,13 @@ module TopHat
       end
 
       def render
-        output = ""
+        output = ActiveSupport::SafeBuffer.new
         output << tag(:meta, :name => 'twitter:card', :value => @type)
         @card_data.each do |key, value|
-          output << '\n'
+          output << "\n".html_safe
           output << tag(:meta, :name => "twitter:#{key}", :value => value)
         end
-        output << '\n' unless @card_data.empty?
+        output << "\n".html_safe unless @card_data.empty?
         output
       end
 
