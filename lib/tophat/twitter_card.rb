@@ -6,9 +6,11 @@ module TopHat
 
       attr_reader :card_data
 
-      def initialize(type)
+      def initialize(type, &block)
         @type = type
         @card_data = {}
+
+        yield self if block_given?
       end
 
       def render
@@ -23,8 +25,7 @@ module TopHat
       end
 
       def add_nested_attributes(method, &block)
-        image_generator = TwitterCardGenerator.new(method)
-        image_generator.instance_eval(&block) if block_given?
+        image_generator = TwitterCardGenerator.new(method, &block)
         image_generator.card_data.each do |key, value|
           @card_data["#{method}:#{key}"] = value
         end
@@ -43,10 +44,7 @@ module TopHat
           TopHat.current['twitter_card'].render
         end
       else
-        card_generator = TwitterCardGenerator.new(type)
-        card_generator.instance_eval(&block) if block_given?
-
-        TopHat.current['twitter_card'] = card_generator
+        TopHat.current['twitter_card'] = TwitterCardGenerator.new(type, &block)
       end
     end
   end

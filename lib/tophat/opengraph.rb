@@ -4,10 +4,12 @@ module TopHat
     class OpenGraphGenerator
       include ActionView::Helpers
 
-      def initialize(options={})
+      def initialize(options={}, &block)
         @app_id = options.delete(:app_id) if options && options.has_key?(:app_id)
         @admins = options.delete(:admins) if options && options.has_key?(:admins)
         @graph_data = {}
+
+        yield self if block_given?
       end
 
       def merge(options={})
@@ -79,16 +81,7 @@ module TopHat
         TopHat.current['open_graph_defaults'] = options
       end
       if block_given?
-        if block.arity == 1
-          Kernel.warn("passing the graph object into the opengraph method has been deprecated, see README for details.")
-
-          TopHat.current['open_graph_generator'] = OpenGraphGenerator.new(TopHat.current['open_graph_defaults'])
-          yield(TopHat.current['open_graph_generator'])
-        else
-          opengraph_generator = OpenGraphGenerator.new(TopHat.current['open_graph_defaults'])
-          opengraph_generator.instance_eval(&block)
-          TopHat.current['open_graph_generator'] = opengraph_generator
-        end
+        TopHat.current['open_graph_generator'] = OpenGraphGenerator.new(TopHat.current['open_graph_defaults'], &block)
       else
         TopHat.current['open_graph_generator'] ||= OpenGraphGenerator.new
         TopHat.current['open_graph_generator'].merge(TopHat.current['open_graph_defaults'])

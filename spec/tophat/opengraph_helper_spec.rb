@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe TopHat::OpenGraphHelper do
+  before(:all) do
+    @title = 'Rain Man'
+    @type = 'movie'
+  end
 
   before(:each) do
     @template = ActionView::Base.new
@@ -61,20 +65,20 @@ describe TopHat::OpenGraphHelper do
 
   context "additional open graph properties" do
     it "generates opengraph meta tags" do
-      @template.opengraph { title 'The Great Gatsby' }
+      @template.opengraph { |og| og.title 'The Great Gatsby' }
       @template.opengraph.should include('<meta content="The Great Gatsby" property="og:title" />')
     end
 
     it "allows use of the tag 'type'" do
-      @template.opengraph { type 'sports_team' }
+      @template.opengraph { |og| og.type 'sports_team' }
       @template.opengraph.should include('<meta content="sports_team" property="og:type" />')
     end
 
     it "supports multiple tags" do
-      @template.opengraph {
-        title 'Austin Powers: International Man of Mystery'
-        type 'movie'
-      }
+      @template.opengraph do |og|
+        og.title 'Austin Powers: International Man of Mystery'
+        og.type 'movie'
+      end
       output = @template.opengraph
 
       output.should include('<meta content="movie" property="og:type" />')
@@ -85,10 +89,10 @@ describe TopHat::OpenGraphHelper do
 
   context "combined usage" do
     it "generates all tags when app_id and admins passed as part of definition" do
-      @template.opengraph(:app_id => 'MyApp', :admins => [123, 1234]) {
-        title 'Rain Man'
-        type 'movie'
-      }
+      @template.opengraph(:app_id => 'MyApp', :admins => [123, 1234]) do |og|
+        og.title @title
+        og.type @type
+      end
       output = @template.opengraph
 
       output.should include('<meta content="MyApp" property="fb:app_id" />')
@@ -98,27 +102,14 @@ describe TopHat::OpenGraphHelper do
     end
 
     it "generates all tags when app_id and admins passed as part of rendering" do
-      @template.opengraph {
-        title 'Rain Man'
-        type 'movie'
-      }
+      @template.opengraph do |og|
+        og.title @title
+        og.type @type
+      end
       output = @template.opengraph(:app_id => 'MyApp', :admins => [123, 1234])
 
       output.should include('<meta content="MyApp" property="fb:app_id" />')
       output.should include('<meta content="123,1234" property="fb:admins" />')
-      output.should include('<meta content="movie" property="og:type" />')
-      output.should include('<meta content="Rain Man" property="og:title" />')
-    end
-  end
-
-  context 'deprecated support' do
-    it 'generates multiple tags' do
-      @template.opengraph { |graph|
-        graph.title 'Rain Man'
-        graph.type 'movie'
-      }
-      output = @template.opengraph
-
       output.should include('<meta content="movie" property="og:type" />')
       output.should include('<meta content="Rain Man" property="og:title" />')
     end

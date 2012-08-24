@@ -1,4 +1,7 @@
-# TopHat
+# TopHat [![Build Status](https://secure.travis-ci.org/spagalloco/tophat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/spagalloco/tophat.png?travis)][gemnasium]
+
+[travis]: http://travis-ci.org/spagalloco/tophat
+[gemnasium]: https://gemnasium.com/spagalloco/tophat
 
 TopHat is a set of view helpers to keep your layouts and views DRY.  Easily include meta tags like keywords and descriptions, Open Graph and Twitter Cards in your Rails views.
 
@@ -83,7 +86,7 @@ keywords and descriptions can also take a default in the layout:
     <%= keywords :default => 'Yoko, Linda' %>
     <%= description :default => 'default description if none is passed' %>
 
-want to merge your default tags with those in your view? just pass merge_default => true
+want to merge your default tags with those in your view? just pass `merge_default => true`
 
     <%= keywords :default => 'Yoko, Linda', :merge_default => true %>
 
@@ -97,7 +100,7 @@ There are also convenience methods for a few common meta tags:
 
 ## Browser Conditionals
 
-TopHat can generate a lot of different browser conditional comments as well:
+TopHat can generate a lot of different browser conditional comments:
 
     ie_5_conditional do
       stylesheet_link_tag 'ie'
@@ -124,9 +127,9 @@ A lot of browsers are supported, check the code for the full listing.
 
 TopHat can also generate Facebook OpenGraph tags.  In your views, you can assign any number of attributes by passing a block to the opengraph helper.  This will store the attributes for that page.
 
-    opengraph do
-      title 'Rain Man'
-      type 'Movie'
+    opengraph do |graph|
+      graph.title 'Rain Man'
+      graph.type 'Movie'
     end
 
 To embed OpenGraph tags on your page, you'll need to reference opengraph in your layout.
@@ -150,30 +153,23 @@ There's also a helper for the html tag along with the opengraph namespaces:
 
 Note: TopHat does not include a "Like" button helper. TopHat's focus is inside the `<head>` tag.
 
-TopHat previously supported a different syntax for defining the opengraph which has been deprecated:
-
-    opengraph do |graph|
-      graph.title 'Rain Man'
-      graph.type 'Movie'
-    end
-
 ## Twitter Card Helpers
 
 TopHat has support for [Twitter Cards](https://dev.twitter.com/docs/cards).
 
-    twitter_card('summary') do
-      url 'http://mysite.com/page'
-      title 'this is my page title'
-      description 'some interesting info about my page'
-      image 'http://mysite.com/animage.jpg'
+    twitter_card('summary') do |card|
+      card.url 'http://mysite.com/page'
+      card.title 'this is my page title'
+      card.description 'some interesting info about my page'
+      card.image 'http://mysite.com/animage.jpg'
     end
 
 You can nest attributes inside a twitter card:
 
-    twitter_card('player') do
-      player 'https://example.com/embed/a' do
-        height '251'
-        width '435'
+    twitter_card('player') do |card|
+      card.player 'https://example.com/embed/a' do |player|
+        player.height '251'
+        player.width '435'
       end
     end
 
@@ -188,25 +184,9 @@ To render the twitter card in your layout, simply call the twitter_card helper w
 
     <%= twitter_card %>
 
-## <a name="build"></a>Build Status
-[![Build Status](https://secure.travis-ci.org/spagalloco/tophat.png?branch=master)][travis]
-
-[travis]: http://travis-ci.org/spagalloco/tophat
-
-## <a name="dependencies"></a>Dependency Status
-[![Dependency Status](https://gemnasium.com/spagalloco/tophat.png?travis)][gemnasium]
-
-[gemnasium]: https://gemnasium.com/spagalloco/tophat
-
 ## Contributing
 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+Pull requests welcome: fork, make a topic branch, commit (squash when possible) with tests and I'll happily consider.
 
 ## Copyright
 
