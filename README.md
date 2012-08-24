@@ -40,7 +40,7 @@ When rendered, the page title will be included in your view.
 Use these options to customize the title format:
 
 * `:prefix` (text between site name and separator) [default: '']
-* `:separator` (text used to separate website name from page title, default is '')
+* `:separator` (text used to separate website name from page title) [default: '']
 * `:suffix` (text between separator and page title) [default: ' ']
 * `:lowercase` (when true, the entire title will be lowercase)
 * `:uppercase` (when true, the entire title will be uppercase)
@@ -81,16 +81,16 @@ which will output the meta-tags:
     <meta name="keywords" content="John, Paul, George, Ringo" />
     <meta name="description" content="You say goodbye, I say hello." />
 
-keywords and descriptions can also take a default in the layout:
+Keywords and descriptions can also take a default in the layout:
 
     <%= keywords :default => 'Yoko, Linda' %>
     <%= description :default => 'default description if none is passed' %>
 
-want to merge your default tags with those in your view? just pass `merge_default => true`
+Want to merge your default tags with those in your view? just pass `merge_default => true`
 
     <%= keywords :default => 'Yoko, Linda', :merge_default => true %>
 
-There are also convenience methods for a few common meta tags:
+There are also convenience methods for common meta tags:
 
     <%= noindex() %>          # outputs: <meta content="noindex" name="robots" />
     <%= noindex('googlebot')  # outputs: <meta content="noindex" name="googlebot" />
@@ -186,7 +186,7 @@ To render the twitter card in your layout, simply call the twitter_card helper w
 
 ## Contributing
 
-Pull requests welcome: fork, make a topic branch, commit (squash when possible) with tests and I'll happily consider.
+Pull requests welcome: fork, make a topic branch, commit (squash when possible) *with tests* and I'll happily consider.
 
 ## Copyright
 
