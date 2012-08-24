@@ -67,21 +67,21 @@ module TopHat
 
     private
 
-      def browser_conditional(browser, version = nil, operator = nil, &block)
-        unless operator.blank?
-          operator = operator.to_s
-          operator = '!' if operator == 'not'
-          operator << " " unless operator == '!'
-        end
-
-        browser_version = version.blank? ? "" : " #{version}"
-
-        output = ActiveSupport::SafeBuffer.new("<!--[if #{operator}#{browser}#{browser_version}]>")
-        output << "\n".html_safe
-        output << yield if block_given?
-        output << "\n".html_safe
-        output << "<![endif]-->".html_safe
+    def browser_conditional(browser, version = nil, operator = nil, &block)
+      unless operator.blank?
+        operator = operator.to_s
+        operator = '!' if operator == 'not'
+        operator << " " unless operator == '!'
       end
+
+      browser_version = version.blank? ? "" : " #{version}"
+
+      output = ActiveSupport::SafeBuffer.new("<!--[if #{operator}#{browser}#{browser_version}]>")
+      output << "\n".html_safe
+      output << yield if block_given?
+      output << "\n".html_safe
+      output << "<![endif]-->".html_safe
+    end
 
   end
 end
