@@ -13,7 +13,7 @@ module TopHat
         yield self if block_given?
       end
 
-      def render
+      def to_html
         output = ActiveSupport::SafeBuffer.new
         output << tag(:meta, :name => 'twitter:card', :value => @type)
         @card_data.each do |key, value|
@@ -23,6 +23,7 @@ module TopHat
         output << "\n".html_safe unless @card_data.empty?
         output
       end
+      alias render to_html
 
       def add_nested_attributes(method, &block)
         image_generator = TwitterCardGenerator.new(method, &block)
@@ -41,7 +42,7 @@ module TopHat
     def twitter_card(type=nil, &block)
       if type.nil?
         if TopHat.current['twitter_card']
-          TopHat.current['twitter_card'].render
+          TopHat.current['twitter_card'].to_html
         end
       else
         TopHat.current['twitter_card'] = TwitterCardGenerator.new(type, &block)
