@@ -18,11 +18,11 @@ module TopHat
       end
 
       def app_id
-        tag(:meta, :property => 'fb:app_id', :content => @app_id) + "\n".html_safe if @app_id
+        tag(:meta, :property => 'fb:app_id', :content => @app_id) + "\n".html_safe
       end
 
       def admins
-        tag(:meta, :property => 'fb:admins', :content => [*@admins].join(',')) + "\n".html_safe if @admins
+        tag(:meta, :property => 'fb:admins', :content => [*@admins].join(',')) + "\n".html_safe
       end
 
       def graph_data
@@ -46,6 +46,14 @@ module TopHat
       def method_missing(method, *args, &block) #:nodoc
         @graph_data ||= {}
         @graph_data[method] = args.shift
+      end
+
+      def to_html
+        output = ActiveSupport::SafeBuffer.new
+        output << app_id if @app_id
+        output << admins if @admins
+        output << graph_data if has_graph_data?
+        output
       end
 
     end
@@ -77,19 +85,14 @@ module TopHat
     end
 
     def opengraph(options=nil, &block)
-      if options.kind_of? Hash
-        TopHat.current['open_graph_defaults'] = options
-      end
+      TopHat.current['open_graph_defaults'] = options if options.kind_of? Hash
+
       if block_given?
         TopHat.current['open_graph_generator'] = OpenGraphGenerator.new(TopHat.current['open_graph_defaults'], &block)
       else
         TopHat.current['open_graph_generator'] ||= OpenGraphGenerator.new
         TopHat.current['open_graph_generator'].merge(TopHat.current['open_graph_defaults'])
-        output = ActiveSupport::SafeBuffer.new
-        output << TopHat.current['open_graph_generator'].app_id
-        output << TopHat.current['open_graph_generator'].admins
-        output << TopHat.current['open_graph_generator'].graph_data if TopHat.current['open_graph_generator'].has_graph_data?
-        output
+        TopHat.current['open_graph_generator'].to_html
       end
     end
 
