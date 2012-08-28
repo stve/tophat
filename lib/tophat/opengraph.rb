@@ -25,7 +25,7 @@ module TopHat
         tag(:meta, :property => 'fb:admins', :content => [*@admins].join(',')) + "\n".html_safe if @admins
       end
 
-      def render_graph_data
+      def graph_data
         output = ActiveSupport::SafeBuffer.new
         @graph_data.each do |key, value|
           output << tag(:meta, :property => "og:#{key}", :content => value)
@@ -88,7 +88,7 @@ module TopHat
         output = ActiveSupport::SafeBuffer.new
         output << TopHat.current['open_graph_generator'].app_id
         output << TopHat.current['open_graph_generator'].admins
-        output << TopHat.current['open_graph_generator'].render_graph_data if TopHat.current['open_graph_generator'].has_graph_data?
+        output << TopHat.current['open_graph_generator'].graph_data if TopHat.current['open_graph_generator'].has_graph_data?
         output
       end
     end

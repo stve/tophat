@@ -1,6 +1,10 @@
 module TopHat
   module TitleHelper
 
+    DEFAULT_PREFIX = ' '.freeze unless defined?(DEFAULT_PREFIX)
+    DEFAULT_SUFFIX = ' '.freeze unless defined?(DEFAULT_SUFFIX)
+    DEFAULT_SEPARATOR = ''.freeze unless defined?(DEFAULT_SEPARATOR)
+
     def title(title=nil, options={})
       if title.is_a?(String) || title.is_a?(Array)
         save_tophat_title(title, options)
@@ -9,7 +13,7 @@ module TopHat
       end
     end
     alias t title
-    
+
     private
 
     def save_tophat_title(title, options)
@@ -27,8 +31,6 @@ module TopHat
 
       title_segments.flatten! # flatten out in case the title is an array
       title_segments.compact! # clean out any nils
-      title_segments.map! { |t| t.downcase! } if options[:lowercase]
-      title_segments.map! { |t| t.upcase! } if options[:uppercase]
       title_segments.map! { |t| strip_tags(t) }
 
       reverse = options[:reverse]
@@ -36,32 +38,34 @@ module TopHat
 
       title_segments.reverse! if reverse
 
-      content_tag :title, title_segments.join(delimiter_from(options)).strip
+      title_text = title_segments.join(delimiter_from(options))
+      title_text.downcase! if options[:lowercase]
+      title_text.upcase! if options[:uppercase]
+
+      content_tag :title, title_text.strip
     end
 
     def delimiter_from(options={})
       return "" if options.empty?
 
       # Prefix (leading space)
-      if options[:prefix]
-        prefix = options[:prefix]
+      prefix = if options[:prefix]
+        options[:prefix]
       elsif options[:prefix] == false
-        prefix = ''
-      else
-        prefix = ' '
+        ''
       end
+      prefix ||= DEFAULT_PREFIX
 
       # Separator
-      separator = options[:separator] || ''
+      separator = options[:separator] || DEFAULT_SEPARATOR
 
       # Suffix (trailing space)
-      if options[:suffix]
-        suffix = options[:suffix]
+      suffix = if options[:suffix]
+        options[:suffix]
       elsif options[:suffix] == false
-        suffix = ''
-      else
-        suffix = ' '
+        ''
       end
+      suffix ||= DEFAULT_SUFFIX
 
       prefix + separator + suffix
     end
