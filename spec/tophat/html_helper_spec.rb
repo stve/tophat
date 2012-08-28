@@ -21,6 +21,11 @@ describe TopHat::HtmlHelper do
         output.should eq('<html xmlns="http://someurl.com">')
       end
 
+      it 'accepts xmlns passed as hashes' do
+        output = @template.html_tag(:xmlns => { :prefix => 'fb', :url => 'http://someurl.com' })
+        output.should eq('<html xmlns:fb="http://someurl.com">')
+      end
+
       it 'accepts xmlns passed as an array of hashes' do
         xmlns = { :prefix => 'fb', :url => 'http://developers.facebook.com/schema/' }
         output = @template.html_tag(:xmlns => [xmlns])
