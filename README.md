@@ -1,7 +1,9 @@
-# TopHat [![Build Status](https://secure.travis-ci.org/spagalloco/tophat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/spagalloco/tophat.png?travis)][gemnasium]
+# TopHat [![Build Status](https://secure.travis-ci.org/spagalloco/tophat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/spagalloco/tophat.png?travis)][gemnasium] [![Code Climate](https://codeclimate.com/badge.png)][codeclimate]
+
 
 [travis]: http://travis-ci.org/spagalloco/tophat
 [gemnasium]: https://gemnasium.com/spagalloco/tophat
+[codeclimate]: https://codeclimate.com/github/spagalloco/tophat
 
 TopHat is a set of view helpers to keep your layouts and views DRY.  Easily include meta tags like keywords and descriptions, Open Graph and Twitter Cards in your Rails views.
 
@@ -179,7 +181,7 @@ Which will render a twitter card like so:
     <meta name="twitter:player" value="https://example.com/embed/a">
     <meta name="twitter:player:width" value="435">
     <meta name="twitter:player:height" value="251">
-    
+
 To render the twitter card in your layout, simply call the twitter_card helper with no arguments:
 
     <%= twitter_card %>
