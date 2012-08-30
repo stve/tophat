@@ -50,8 +50,8 @@ module TopHat
 
       def to_html
         output = ActiveSupport::SafeBuffer.new
-        output << app_id if @app_id
-        output << admins if @admins
+        output << app_id if defined?(@app_id) && @app_id
+        output << admins if defined?(@admins) && @admins
         output << graph_data if has_graph_data?
         output
       end
