@@ -19,129 +19,129 @@ describe TopHat::StylesheetHelper do
   it "defines IE conditionals" do
     @template.ie_5_conditional {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.ie_5_5_conditional {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.ie_6_conditional {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if IE 6]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if IE 6]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.ie_7_conditional {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if IE 7]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if IE 7]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.ie_8_conditional {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if IE 8]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if IE 8]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.ie_9_conditional {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if IE 9]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if IE 9]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
   end
 
   it "renders defined IE conditional with greater than operator" do
     @template.ie_5_conditional(:gt) {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if gt IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if gt IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.ie_5_5_conditional(:gt) {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if gt IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if gt IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
   end
 
   it "renders defined IE conditional with greater than or equal to operator" do
     @template.ie_5_conditional(:gte) {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if gte IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if gte IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.ie_5_5_conditional(:gte) {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if gte IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if gte IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
   end
 
   it "renders defined IE conditional with ! operator" do
     @template.ie_5_conditional(:not) {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if !IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if !IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.ie_5_5_conditional(:not) {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if !IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if !IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
   end
 
   it "renders defined IE conditional with less than operator" do
     @template.ie_5_conditional(:lt) {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if lt IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if lt IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.ie_5_5_conditional(:lt) {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if lt IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if lt IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
   end
 
   it "renders defined IE conditional with less than or equal to operator" do
     @template.ie_5_conditional(:lte) {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if lte IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if lte IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.ie_5_5_conditional(:lte) {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if lte IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if lte IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
   end
 
   it "renders defined IE conditional with equal to operator" do
     @template.ie_5_conditional(:eq) {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if eq IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if eq IE 5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.ie_5_5_conditional(:eq) {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if eq IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if eq IE 5.5]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
   end
 
   it "renders defined conditionals for other browsers" do
     @template.opera_conditional {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if Opera]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if Opera]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.webkit_conditional {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if Webkit]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if Webkit]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.webkit_conditional(:eq) {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if eq Webkit]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if eq Webkit]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.gecko_conditional {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if Gecko]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if Gecko]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.ie_mac_conditional {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if IEMac]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if IEMac]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.konqueror_conditional {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if Konq]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if Konq]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.ie_mobile_conditional {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if IEmob]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if IEmob]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.psp_conditional {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if PSP]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if PSP]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.net_front_conditional {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if NetF]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if NetF]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
     @template.mobile_safari_conditional {
       @template.stylesheet_link_tag(@stylesheet)
-    }.should == "<!--[if SafMob]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->"
+    }.should eq("<!--[if SafMob]>\n<link href=\"/stylesheets/ie.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />\n<![endif]-->")
 
   end
 
