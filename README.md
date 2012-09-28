@@ -15,6 +15,10 @@ Just add it to your Gemfile:
 
 Note: TopHat is Rails 3.0+ compatible.
 
+## Changes in 2.1
+
+TopHat version < 2.1 aliased the `title` as `t` and conflicted with an existing Rails helper used for i18n translation.  Version 2.1 removes this alias.  If you were using `t` as part of TopHat previously, you will need to change your code to use TopHat's `title` helper instead.
+
 ## Layout Usage
 
 You'll want to add the relevant TopHat helpers to your layouts:
