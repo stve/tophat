@@ -12,7 +12,6 @@ module TopHat
         display_tophat_title(title || options)
       end
     end
-    alias t title
 
     private
 
