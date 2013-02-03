@@ -113,6 +113,20 @@ describe TopHat::OpenGraphHelper do
       output.should include('<meta content="movie" property="og:type" />')
       output.should include('<meta content="Rain Man" property="og:title" />')
     end
+
+    it 'supports default tags' do
+      @template.opengraph do |og|
+        og.title @title
+        og.type @type
+      end
+      output = @template.opengraph do |og|
+        og.rating '5/10'
+      end.to_s
+
+      output.should include('<meta content="movie" property="og:type" />')
+      output.should include('<meta content="Rain Man" property="og:title" />')
+      output.should include('<meta content="5/10" property="og:rating" />')
+    end
   end
 
 end
