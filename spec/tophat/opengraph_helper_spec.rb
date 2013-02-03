@@ -85,6 +85,19 @@ describe TopHat::OpenGraphHelper do
       output.should include('<meta content="Austin Powers: International Man of Mystery" property="og:title" />')
     end
 
+    it 'supports default tags' do
+      @template.opengraph do |og|
+        og.title @title
+        og.type @type
+      end
+      output = @template.opengraph do |og|
+        og.rating '5/10'
+      end.to_s
+
+      output.should include('<meta content="movie" property="og:type" />')
+      output.should include('<meta content="Rain Man" property="og:title" />')
+      output.should include('<meta content="5/10" property="og:rating" />')
+    end
   end
 
   context "combined usage" do
@@ -119,10 +132,12 @@ describe TopHat::OpenGraphHelper do
         og.title @title
         og.type @type
       end
-      output = @template.opengraph do |og|
+      output = @template.opengraph(:app_id => 'MyApp', :admins => [123, 1234]) do |og|
         og.rating '5/10'
       end.to_s
 
+      output.should include('<meta content="MyApp" property="fb:app_id" />')
+      output.should include('<meta content="123,1234" property="fb:admins" />')
       output.should include('<meta content="movie" property="og:type" />')
       output.should include('<meta content="Rain Man" property="og:title" />')
       output.should include('<meta content="5/10" property="og:rating" />')
