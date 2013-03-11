@@ -1,5 +1,6 @@
 require 'simplecov'
 SimpleCov.start do
+  add_filter '.bundle'
   add_group 'TopHat', 'lib/tophat'
   add_group 'Specs', 'spec'
 end
