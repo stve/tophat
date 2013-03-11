@@ -13,7 +13,7 @@ Just add it to your Gemfile:
 
     gem 'tophat'
 
-Note: TopHat is Rails 3.0+ compatible.
+Note: TopHat is compatible with Rails 3.0+.
 
 ## Changes in 2.1
 
