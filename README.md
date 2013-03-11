@@ -1,4 +1,4 @@
-# TopHat [![Build Status](https://secure.travis-ci.org/spagalloco/tophat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/spagalloco/tophat.png?travis)][gemnasium] [![Code Climate](https://codeclimate.com/badge.png)][codeclimate]
+# TopHat [![Build Status](https://secure.travis-ci.org/spagalloco/tophat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/spagalloco/tophat.png?travis)][gemnasium] [![Code Climate](https://codeclimate.com/github/spagalloco/tophat.png][codeclimate]
 
 
 [travis]: http://travis-ci.org/spagalloco/tophat
