@@ -2,7 +2,7 @@ unless ENV['CI']
   require 'simplecov'
   SimpleCov.start do
     add_filter '.bundle'
-    add_group 'Tweetstream', 'lib/tweetstream'
+    add_group 'TopHat', 'lib/tophat'
     add_group 'Specs', 'spec'
   end
 end
