@@ -61,4 +61,21 @@ describe TopHat::TwitterCardHelper do
     output.should include('<meta name="twitter:player:stream:content_type" value="123" />')
   end
 
+  it 'supports default tags' do
+    @template.twitter_card('player') do |card|
+      card.player do |player|
+        player.embed 'https://example.com/embed/a'
+      end
+    end
+    output = @template.twitter_card('player') do |card|
+      card.player do |player|
+        player.site 'https://example.com'
+      end
+    end
+
+    output.should include('<meta name="twitter:player:embed" value="https://example.com/embed/a" />')
+    output.should include('<meta name="twitter:player:site" value="https://example.com" />')
+    output.should_not include('<meta name="twitter:embed" value="https://example.com/embed/a" />')
+  end
+
 end
