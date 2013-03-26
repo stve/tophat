@@ -92,7 +92,7 @@ describe TopHat::OpenGraphHelper do
       end
       output = @template.opengraph do |og|
         og.rating '5/10'
-      end.to_s
+      end
 
       output.should include('<meta content="movie" property="og:type" />')
       output.should include('<meta content="Rain Man" property="og:title" />')
@@ -134,7 +134,7 @@ describe TopHat::OpenGraphHelper do
       end
       output = @template.opengraph(:app_id => 'MyApp', :admins => [123, 1234]) do |og|
         og.rating '5/10'
-      end.to_s
+      end
 
       output.should include('<meta content="MyApp" property="fb:app_id" />')
       output.should include('<meta content="123,1234" property="fb:admins" />')
