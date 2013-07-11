@@ -16,7 +16,7 @@ describe TopHat::TwitterCardHelper do
     @template.twitter_card('summary')
 
     output = @template.twitter_card
-    output.should eq('<meta content="summary" name="twitter:card" />')
+    output.should eq('<meta content="summary" property="twitter:card" />')
   end
 
   it 'generates twitter:card meta tags' do
@@ -28,8 +28,8 @@ describe TopHat::TwitterCardHelper do
     end
 
     output = @template.twitter_card
-    output.should include('<meta content="Rain Man" name="twitter:title" />')
-    output.should include('<meta content="http://someurl.com/animage.jpg" name="twitter:image" />')
+    output.should include('<meta content="Rain Man" property="twitter:title" />')
+    output.should include('<meta content="http://someurl.com/animage.jpg" property="twitter:image" />')
   end
 
   it 'generates nested twitter:card meta tags' do
@@ -41,9 +41,9 @@ describe TopHat::TwitterCardHelper do
     end
 
     output = @template.twitter_card
-    output.should include('<meta content="http://someurl.com/animage.jpg" name="twitter:image" />')
-    output.should include('<meta content="123" name="twitter:image:height" />')
-    output.should include('<meta content="456" name="twitter:image:width" />')
+    output.should include('<meta content="http://someurl.com/animage.jpg" property="twitter:image" />')
+    output.should include('<meta content="123" property="twitter:image:height" />')
+    output.should include('<meta content="456" property="twitter:image:width" />')
   end
 
 
@@ -57,8 +57,8 @@ describe TopHat::TwitterCardHelper do
     end
 
     output = @template.twitter_card
-    output.should include('<meta content="http://example.com/raw-stream/a.mp4" name="twitter:player:stream" />')
-    output.should include('<meta content="123" name="twitter:player:stream:content_type" />')
+    output.should include('<meta content="http://example.com/raw-stream/a.mp4" property="twitter:player:stream" />')
+    output.should include('<meta content="123" property="twitter:player:stream:content_type" />')
   end
 
 end

@@ -15,10 +15,10 @@ module TopHat
 
       def to_html
         output = ActiveSupport::SafeBuffer.new
-        output << tag(:meta, :name => 'twitter:card', :content => @type)
+        output << tag(:meta, :property => 'twitter:card', :content => @type)
         @card_data.each do |key, value|
           output << "\n".html_safe
-          output << tag(:meta, :name => "twitter:#{key}", :content => value)
+          output << tag(:meta, :property => "twitter:#{key}", :content => value)
         end
         output << "\n".html_safe unless @card_data.empty?
         output
