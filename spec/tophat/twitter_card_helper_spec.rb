@@ -16,7 +16,7 @@ describe TopHat::TwitterCardHelper do
     @template.twitter_card('summary')
 
     output = @template.twitter_card
-    output.should eq('<meta name="twitter:card" value="summary" />')
+    output.should eq('<meta content="summary" name="twitter:card" />')
   end
 
   it 'generates twitter:card meta tags' do
@@ -28,8 +28,8 @@ describe TopHat::TwitterCardHelper do
     end
 
     output = @template.twitter_card
-    output.should include('<meta name="twitter:title" value="Rain Man" />')
-    output.should include('<meta name="twitter:image" value="http://someurl.com/animage.jpg" />')
+    output.should include('<meta content="Rain Man" name="twitter:title" />')
+    output.should include('<meta content="http://someurl.com/animage.jpg" name="twitter:image" />')
   end
 
   it 'generates nested twitter:card meta tags' do
@@ -41,9 +41,9 @@ describe TopHat::TwitterCardHelper do
     end
 
     output = @template.twitter_card
-    output.should include('<meta name="twitter:image" value="http://someurl.com/animage.jpg" />')
-    output.should include('<meta name="twitter:image:height" value="123" />')
-    output.should include('<meta name="twitter:image:width" value="456" />')
+    output.should include('<meta content="http://someurl.com/animage.jpg" name="twitter:image" />')
+    output.should include('<meta content="123" name="twitter:image:height" />')
+    output.should include('<meta content="456" name="twitter:image:width" />')
   end
 
 
@@ -57,8 +57,8 @@ describe TopHat::TwitterCardHelper do
     end
 
     output = @template.twitter_card
-    output.should include('<meta name="twitter:player:stream" value="http://example.com/raw-stream/a.mp4" />')
-    output.should include('<meta name="twitter:player:stream:content_type" value="123" />')
+    output.should include('<meta content="http://example.com/raw-stream/a.mp4" name="twitter:player:stream" />')
+    output.should include('<meta content="123" name="twitter:player:stream:content_type" />')
   end
 
 end
