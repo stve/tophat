@@ -92,4 +92,10 @@ describe TopHat::MetaHelper do
     end
   end
 
+  describe ".itemprop" do
+    it "renders an itemprop meta tag" do
+      @template.itemprop(:rating, '1').should == "<meta content=\"1\" itemprop=\"rating\" />"
+    end
+  end
+
 end

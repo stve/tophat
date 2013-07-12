@@ -14,6 +14,10 @@ module TopHat
       meta_tag(options.merge(:name => 'viewport', :content => viewport), true)
     end
 
+    def itemprop(name, value)
+      meta_tag(:itemprop => name, :content => value)
+    end
+
     # page descriptions
     # <meta name="description" content="Description goes here." />
     def description(options={})
