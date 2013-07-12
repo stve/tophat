@@ -18,6 +18,11 @@ describe TopHat::RobotsHelper do
     it "generates a default tag when passed nil" do
       @template.nofollow(nil).should == "<meta content=\"nofollow\" name=\"robots\" />"
     end
+
+    it 'stores a descriptor' do
+      @template.nofollow('twitterbot')
+      @template.nofollow.should == "<meta content=\"nofollow\" name=\"twitterbot\" />"
+    end
   end
 
   describe ".noindex" do
@@ -31,6 +36,11 @@ describe TopHat::RobotsHelper do
 
     it "generates a default tag when passed nil" do
       @template.noindex(nil).should == "<meta content=\"noindex\" name=\"robots\" />"
+    end
+
+    it 'stores a descriptor' do
+      @template.noindex('twitterbot')
+      @template.noindex.should == "<meta content=\"noindex\" name=\"twitterbot\" />"
     end
   end
 
