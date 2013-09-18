@@ -3,25 +3,24 @@ module TopHat
 
     DEFAULT_DESCRIPTOR = 'robots'
 
-    def noindex(descriptor=nil)
-      if descriptor
-        TopHat.current['noindex'] = descriptor || DEFAULT_DESCRIPTOR
-      else
-        descriptor = TopHat.current['noindex'] || DEFAULT_DESCRIPTOR
-      end
-      tag(:meta, :name => descriptor, :content => 'noindex')
+    def noindex(descriptor = nil, content = 'noindex')
+      set_tag(descriptor, content)
     end
 
-    def nofollow(descriptor=nil)
-      if descriptor
-        TopHat.current['nofollow'] = descriptor || DEFAULT_DESCRIPTOR
-      else
-        descriptor = TopHat.current['nofollow'] || DEFAULT_DESCRIPTOR
-      end
-      tag(:meta, :name => descriptor, :content => 'nofollow')
+    def nofollow(descriptor = nil, content = 'nofollow')
+      set_tag(descriptor, content)
     end
 
-    def canonical(path=nil)
+    def set_tag descriptor = nil, content
+      if descriptor
+        TopHat.current[content] = descriptor || DEFAULT_DESCRIPTOR
+      else
+        descriptor = TopHat.current[content] || DEFAULT_DESCRIPTOR
+      end
+      tag(:meta, :name => descriptor, :content => content)
+    end
+
+    def canonical(path = nil)
       tag(:link, :rel => 'canonical', :href => path) if path
     end
 
