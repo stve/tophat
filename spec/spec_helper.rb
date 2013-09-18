@@ -1,11 +1,13 @@
-require 'simplecov'
-SimpleCov.start do
-  add_group 'TopHat', 'lib/tophat'
-  add_group 'Specs', 'spec'
+unless ENV['CI']
+  require 'simplecov'
+  SimpleCov.start do
+    add_filter '.bundle'
+    add_group 'TopHat', 'lib/tophat'
+    add_group 'Specs', 'spec'
+  end
 end
 
-require File.expand_path('../../lib/tophat', __FILE__)
-
+require 'tophat'
 require 'rspec'
 require 'rails/all'
 

@@ -12,7 +12,9 @@ module TopHat
         yield self if block_given?
       end
 
-      def merge(options={})
+      def merge(options={}, &block)
+        yield self if block_given?
+
         @app_id = options.delete(:app_id) if options && options.has_key?(:app_id)
         @admins = options.delete(:admins) if options && options.has_key?(:admins)
       end
@@ -85,15 +87,9 @@ module TopHat
     end
 
     def opengraph(options=nil, &block)
-      TopHat.current['open_graph_defaults'] = options if options.kind_of? Hash
-
-      if block_given?
-        TopHat.current['open_graph_generator'] = OpenGraphGenerator.new(TopHat.current['open_graph_defaults'], &block)
-      else
-        TopHat.current['open_graph_generator'] ||= OpenGraphGenerator.new
-        TopHat.current['open_graph_generator'].merge(TopHat.current['open_graph_defaults'])
-        TopHat.current['open_graph_generator'].to_html
-      end
+      TopHat.current['open_graph_generator'] ||= OpenGraphGenerator.new(options)
+      TopHat.current['open_graph_generator'].merge(options, &block)
+      TopHat.current['open_graph_generator'].to_html
     end
 
   end

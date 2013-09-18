@@ -14,14 +14,6 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency('actionpack', '>= 3.0.0')
 
-  s.add_development_dependency('rake')
-  s.add_development_dependency('rspec')
-  s.add_development_dependency('yard')
-  s.add_development_dependency('rdiscount')
-  s.add_development_dependency('simplecov')
-  s.add_development_dependency('rails', '>= 3.0.0')
-  s.add_development_dependency('guard-rspec')
-
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }

@@ -1,4 +1,4 @@
-# TopHat [![Build Status](https://secure.travis-ci.org/spagalloco/tophat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/spagalloco/tophat.png?travis)][gemnasium] [![Code Climate](https://codeclimate.com/badge.png)][codeclimate]
+# TopHat [![Build Status](https://secure.travis-ci.org/spagalloco/tophat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/spagalloco/tophat.png?travis)][gemnasium] [![Code Climate](https://codeclimate.com/github/spagalloco/tophat.png)][codeclimate]
 
 
 [travis]: http://travis-ci.org/spagalloco/tophat
@@ -13,7 +13,11 @@ Just add it to your Gemfile:
 
     gem 'tophat'
 
-Note: TopHat is Rails 3.0+ compatible.
+Note: TopHat is compatible with Rails 3.0+.
+
+## Changes in 2.1
+
+TopHat version < 2.1 aliased the `title` as `t` and conflicted with an existing Rails helper used for i18n translation.  Version 2.1 removes this alias.  If you were using `t` as part of TopHat previously, you will need to change your code to use TopHat's `title` helper instead.
 
 ## Layout Usage
 
