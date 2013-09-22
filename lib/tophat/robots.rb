@@ -4,14 +4,14 @@ module TopHat
     DEFAULT_DESCRIPTOR = 'robots'
 
     def noindex(descriptor = nil, content = 'noindex')
-      robot_tag descriptor, content
+      robot_tag(descriptor, content)
     end
 
     def nofollow(descriptor = nil, content = 'nofollow')
-      robot_tag descriptor, content
+      robot_tag(descriptor, content)
     end
 
-    def robot_tag descriptor = nil, content
+    def robot_tag(descriptor = nil, content)
       if descriptor
         TopHat.current[content] = descriptor || DEFAULT_DESCRIPTOR
       else
