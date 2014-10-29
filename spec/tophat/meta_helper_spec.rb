@@ -8,19 +8,19 @@ describe TopHat::MetaHelper do
 
   describe "charset" do
     it 'renders a meta tag with a charset' do
-      @template.charset('utf-8').should eq('<meta charset="utf-8">')
+      expect(@template.charset('utf-8')).to eq('<meta charset="utf-8">')
     end
   end
 
   describe "viewport" do
     it 'renders a meta tag with a viewport' do
-      @template.viewport('width=device-width').should eq('<meta content="width=device-width" name="viewport">')
+      expect(@template.viewport('width=device-width')).to eq('<meta content="width=device-width" name="viewport">')
     end
   end
 
   describe "meta_tag" do
     it 'renders meta_tags' do
-      @template.meta_tag(:charset => 'utf-8').should eq('<meta charset="utf-8" />')
+      expect(@template.meta_tag(:charset => 'utf-8')).to eq('<meta charset="utf-8" />')
     end
   end
 
@@ -31,11 +31,11 @@ describe TopHat::MetaHelper do
       end
 
       it "saves keywords" do
-        @template.keywords(@keywords).should == @keywords.join(', ')
+        expect(@template.keywords(@keywords)).to eq(@keywords.join(', '))
       end
 
       it "uses default keywords if keywords is empty" do
-        @template.keywords(:default => @keywords).should == "<meta content=\"#{@keywords.join(', ')}\" name=\"keywords\" />"
+        expect(@template.keywords(:default => @keywords)).to eq("<meta content=\"#{@keywords.join(', ')}\" name=\"keywords\" />")
       end
     end
 
@@ -45,56 +45,56 @@ describe TopHat::MetaHelper do
       end
 
       it "saves keywords" do
-        @template.keywords(@keywords).should == @keywords
+        expect(@template.keywords(@keywords)).to eq(@keywords)
       end
 
       it "uses default keywords passed as a string if keywords is empty" do
-        @template.keywords(:default => @keywords).should == "<meta content=\"#{@keywords}\" name=\"keywords\" />"
+        expect(@template.keywords(:default => @keywords)).to eq("<meta content=\"#{@keywords}\" name=\"keywords\" />")
       end
     end
 
     it "return nil when no default is configured and no keywords are defined" do
-      @template.keywords.should be_nil
+      expect(@template.keywords).to be_nil
     end
 
     it "returns nil when passed nil" do
-      @template.keywords(nil).should be_nil
+      expect(@template.keywords(nil)).to be_nil
     end
 
     it "merges default tags with page tags, when merge_default is set to true" do
       @template.keywords("Stu, Pete")
-      @template.keywords(:default => "John, Paul, George, Ringo", :merge_default => true).should == "<meta content=\"Stu, Pete, John, Paul, George, Ringo\" name=\"keywords\" />"
+      expect(@template.keywords(:default => "John, Paul, George, Ringo", :merge_default => true)).to eq("<meta content=\"Stu, Pete, John, Paul, George, Ringo\" name=\"keywords\" />")
     end
   end
 
   describe ".description" do
     it "saves the description" do
       desc = "Cinderella story. Outta nowhere. A former greenskeeper, now, about to become the Masters champion."
-      @template.description(desc).should == desc
+      expect(@template.description(desc)).to eq(desc)
     end
 
     it "uses the default description if no description is defined" do
       desc = "A flute without holes, is not a flute. A donut without a hole, is a Danish."
-      @template.description(:default => desc).should == "<meta content=\"#{desc}\" name=\"description\" />"
+      expect(@template.description(:default => desc)).to eq("<meta content=\"#{desc}\" name=\"description\" />")
     end
 
     it "returns nil when passed nil" do
-      @template.description(nil).should be_nil
+      expect(@template.description(nil)).to be_nil
     end
 
     it "returns nil when no default is configured and no description is defined" do
-      @template.description.should be_nil
+      expect(@template.description).to be_nil
     end
 
     it 'overrides the default' do
       @template.description('This is a custom description')
-      @template.description(:default => 'This is a default description.').should eq('<meta content="This is a custom description" name="description" />')
+      expect(@template.description(:default => 'This is a default description.')).to eq('<meta content="This is a custom description" name="description" />')
     end
   end
 
   describe ".itemprop" do
     it "renders an itemprop meta tag" do
-      @template.itemprop(:rating, '1').should == "<meta content=\"1\" itemprop=\"rating\" />"
+      expect(@template.itemprop(:rating, '1')).to eq("<meta content=\"1\" itemprop=\"rating\" />")
     end
   end
 
