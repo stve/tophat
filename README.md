@@ -1,9 +1,9 @@
-# TopHat [![Build Status](https://secure.travis-ci.org/spagalloco/tophat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/spagalloco/tophat.png?travis)][gemnasium] [![Code Climate](https://codeclimate.com/github/spagalloco/tophat.png)][codeclimate]
+# TopHat [![Build Status](https://secure.travis-ci.org/stve/tophat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/stve/tophat.png?travis)][gemnasium] [![Code Climate](https://codeclimate.com/github/stve/tophat.png)][codeclimate]
 
 
-[travis]: http://travis-ci.org/spagalloco/tophat
-[gemnasium]: https://gemnasium.com/spagalloco/tophat
-[codeclimate]: https://codeclimate.com/github/spagalloco/tophat
+[travis]: http://travis-ci.org/stve/tophat
+[gemnasium]: https://gemnasium.com/stve/tophat
+[codeclimate]: https://codeclimate.com/github/stve/tophat
 
 TopHat is a set of view helpers to keep your layouts and views DRY.  Easily include meta tags like keywords and descriptions, Open Graph and Twitter Cards in your Rails views.
 
@@ -196,4 +196,4 @@ Pull requests welcome: fork, make a topic branch, commit (squash when possible) 
 
 ## Copyright
 
-Copyright (c) 2012 Steve Agalloco. See [LICENSE](https://github.com/spagalloco/tophat/blob/master/LICENSE.md) for details.
+Copyright (c) 2012 Steve Agalloco. See [LICENSE](https://github.com/stve/tophat/blob/master/LICENSE.md) for details.

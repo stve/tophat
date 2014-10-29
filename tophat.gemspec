@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Steve Agalloco"]
   s.email       = ['steve.agalloco@gmail.com']
-  s.homepage    = "https://github.com/spagalloco/tophat"
+  s.homepage    = "https://github.com/stve/tophat"
   s.description = %q{Simple view helpers for your layouts}
   s.summary     = %q{Simple view helpers for your layouts}
 
