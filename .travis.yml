@@ -1,13 +1,19 @@
 bundler_args: --without development
 language: ruby
 rvm:
-  - rbx-18mode
-  - rbx-19mode
-  - 1.8.7
-  - 1.9.2
   - 1.9.3
-  - 2.0.0
+  - 2.0
+  - 2.1
+  - jruby-19mode
+  - jruby-19mode
+  - jruby-head
+  - rbx-2
+  - ruby-head
 matrix:
   allow_failures:
-    - rvm: rbx-18mode
-    - rvm: 1.8.7
+    - rvm: jruby-head
+    - rvm: jruby-19mode
+    - rvm: rbx-2
+    - rvm: ruby-head
+  fash_finish: true
+sudo: false
