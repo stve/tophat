@@ -28,7 +28,7 @@ module TopHat
       else
         default_description = options.delete(:default)
         options[:name] = 'description'
-        options[:content] = TopHat.current['description'] || default_description
+        options[:content] = TopHat.current['description'].blank? ? default_description : TopHat.current['description']
 
         meta_tag(options) if options[:content]
       end
