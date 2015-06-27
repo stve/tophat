@@ -90,6 +90,11 @@ describe TopHat::MetaHelper do
       @template.description('This is a custom description')
       expect(@template.description(:default => 'This is a default description.')).to eq('<meta content="This is a custom description" name="description" />')
     end
+
+    it "uses the default description if custom description is blank" do
+      @template.description('')
+      expect(@template.description(:default => 'This is a default description')).to eq('<meta content="This is a default description" name="description" />')
+    end 
   end
 
   describe ".itemprop" do
