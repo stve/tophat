@@ -1,7 +1,12 @@
-# TopHat [![Build Status](https://secure.travis-ci.org/stve/tophat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/stve/tophat.png?travis)][gemnasium] [![Code Climate](https://codeclimate.com/github/stve/tophat.png)][codeclimate]
+# TopHat
 
+[![Gem Version](http://img.shields.io/gem/v/tophat.svg)][gem]
+[![Build Status](http://img.shields.io/travis/stve/tophat.svg)][travis]
+[![Dependency Status](http://img.shields.io/gemnasium/stve/tophat.svg)][gemnasium]
+[![Code Climate](http://img.shields.io/codeclimate/github/stve/tophat.svg)][codeclimate]
 
-[travis]: http://travis-ci.org/stve/tophat
+[gem]: https://rubygems.org/gems/tophat
+[travis]: https://travis-ci.org/stve/tophat
 [gemnasium]: https://gemnasium.com/stve/tophat
 [codeclimate]: https://codeclimate.com/github/stve/tophat
 
