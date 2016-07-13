@@ -21,13 +21,14 @@ module TopHat
   end
 
   def setup
-    ActionView::Base.send :include, TopHat::HtmlHelper
-    ActionView::Base.send :include, TopHat::TitleHelper
-    ActionView::Base.send :include, TopHat::MetaHelper
-    ActionView::Base.send :include, TopHat::StylesheetHelper
-    ActionView::Base.send :include, TopHat::RobotsHelper
-    ActionView::Base.send :include, TopHat::OpenGraphHelper
-    ActionView::Base.send :include, TopHat::TwitterCardHelper
+    ActiveSupport.on_load(:action_view) do
+      include TopHat::HtmlHelper
+      include TopHat::TitleHelper
+      include TopHat::MetaHelper
+      include TopHat::StylesheetHelper
+      include TopHat::RobotsHelper
+      include TopHat::OpenGraphHelper
+      include TopHat::TwitterCardHelper
+    end
   end
-
 end
