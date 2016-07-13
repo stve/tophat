@@ -1,19 +1,12 @@
-bundler_args: --without development
+bundler_args: --without development --retry=3 --jobs=3
 language: ruby
 rvm:
-  - 1.9.3
   - 2.0
   - 2.1
-  - jruby-19mode
-  - jruby-19mode
-  - jruby-head
-  - rbx-2
+  - 2.2
   - ruby-head
 matrix:
   allow_failures:
-    - rvm: jruby-head
-    - rvm: jruby-19mode
-    - rvm: rbx-2
     - rvm: ruby-head
   fash_finish: true
 sudo: false
