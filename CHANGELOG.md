@@ -2,6 +2,10 @@
 
 
 
+# 2.3.1 / April 24, 2017
+
+* [BUGFIX] Remove Rails 5+ deprecation warning (@maschwenk)
+
 # 2.3.0 / July 13, 2016
 
 * [BUGFIX] Use ActiveSupport.on_load looks to inject behavior into ActionView::Base
